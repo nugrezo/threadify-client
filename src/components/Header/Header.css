@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  width: 100%;
+  background: linear-gradient(to right, #862e9c, #ae3ec9);
+  padding: 16px;
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 1;
+}
+
+.navbar-collapse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.login-icon {
+  color: #a61e4d;
+  padding-left: 2px;
+  margin: 0 auto;
+  width: 36px;
+  height: 36px;
+}
+
+.sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: #faa2c1;
+  border: none;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.sign-up:hover {
+  background-color: #f783ac;
+  color: #ffdeeb;
+  font-weight: bold;
+}
+
+.sign-up:hover .login-icon {
+  stroke: #ffdeeb;
+}
+
+.brand {
+  color: #f3d9fa;
+  font-size: 32px;
+}
+
+.brand:hover {
+  color: #fff;
+}

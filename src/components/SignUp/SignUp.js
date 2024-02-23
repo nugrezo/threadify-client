@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import Nav from "react-bootstrap/Nav";
 import { withRouter } from "react-router-dom";
+import "./SignUp.css";
 
 import { signUp, signIn } from "../../api/auth";
 import messages from "../AutoDismissAlert/messages";
@@ -54,9 +56,9 @@ class SignUp extends Component {
 
     return (
       <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Sign Up</h3>
-          <Form onSubmit={this.onSignUp}>
+        <div className="sign-up-form col-sm-10 col-md-8 mx-auto mt-5">
+          <h3 className="sign-up--title">Register your account</h3>
+          <Form className="sign-up--form" onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -90,9 +92,15 @@ class SignUp extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
+            <Button className="sign-up--btn" variant="primary" type="submit">
+              Sign Up
             </Button>
+            <div className="navigate-sign-in">
+              <p className="have-account">Have an account?</p>
+              <Nav.Link className="navigate--sign-in" href="#sign-in">
+                Sign In
+              </Nav.Link>
+            </div>
           </Form>
         </div>
       </div>
