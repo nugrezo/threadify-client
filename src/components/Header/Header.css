@@ -15,9 +15,23 @@
   opacity: 1;
 }
 
-.navbar-collapse {
+.collapse {
   display: flex;
+  align-items: center;
   flex-direction: row-reverse;
+}
+
+.ml-auto {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-text {
+  background-color: #cc5de8;
+  padding: 8px;
+  border-radius: 16px;
+  color: #f3d9fa;
 }
 
 .login-icon {
@@ -28,7 +42,8 @@
   height: 36px;
 }
 
-.sign-up {
+.sign-up,
+.sign-out {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,13 +59,15 @@
   border-radius: 50%;
 }
 
-.sign-up:hover {
+.sign-up:hover,
+.sign-out:hover {
   background-color: #f783ac;
   color: #ffdeeb;
   font-weight: bold;
 }
 
-.sign-up:hover .login-icon {
+.sign-up:hover .login-icon,
+.sign-out:hover .signout-icon {
   stroke: #ffdeeb;
 }
 
@@ -61,4 +78,10 @@
 
 .brand:hover {
   color: #fff;
+}
+
+.signout-icon {
+  width: 32px;
+  height: 32px;
+  stroke: #a61e4d;
 }
