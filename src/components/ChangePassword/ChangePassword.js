@@ -1,50 +1,53 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-import { changePassword } from '../../api/auth'
-import messages from '../AutoDismissAlert/messages'
+import { changePassword } from "../../api/auth";
+import messages from "../AutoDismissAlert/messages";
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 class ChangePassword extends Component {
-  constructor () {
-    super()
+  constructor() {
+    super();
 
     this.state = {
-      oldPassword: '',
-      newPassword: ''
-    }
+      oldPassword: "",
+      newPassword: "",
+    };
   }
 
-  handleChange = event => this.setState({
-    [event.target.name]: event.target.value
-  })
+  handleChange = (event) =>
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
 
-  onChangePassword = event => {
-    event.preventDefault()
+  onChangePassword = (event) => {
+    event.preventDefault();
 
-    const { msgAlert, history, user } = this.props
+    const { msgAlert, history, user } = this.props;
 
     changePassword(this.state, user)
-      .then(() => msgAlert({
-        heading: 'Change Password Success',
-        message: messages.changePasswordSuccess,
-        variant: 'success'
-      }))
-      .then(() => history.push('/'))
-      .catch(error => {
-        this.setState({ oldPassword: '', newPassword: '' })
+      .then(() =>
         msgAlert({
-          heading: 'Change Password Failed with error: ' + error.message,
-          message: messages.changePasswordFailure,
-          variant: 'danger'
+          heading: "Change Password Success",
+          message: messages.changePasswordSuccess,
+          variant: "success",
         })
-      })
-  }
+      )
+      .then(() => history.push("/"))
+      .catch((error) => {
+        this.setState({ oldPassword: "", newPassword: "" });
+        msgAlert({
+          heading: "Change Password Failed with error: " + error.message,
+          message: messages.changePasswordFailure,
+          variant: "danger",
+        });
+      });
+  };
 
-  render () {
-    const { oldPassword, newPassword } = this.state
+  render() {
+    const { oldPassword, newPassword } = this.state;
 
     return (
       <div className="row">
@@ -73,17 +76,14 @@ class ChangePassword extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-            >
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default withRouter(ChangePassword)
+export default withRouter(ChangePassword);
