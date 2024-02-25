@@ -40,16 +40,24 @@ function App() {
             path="/sign-in"
             element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
           />
-          <Route
-            path="/sign-out"
-            element={
-              <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-            }
-          />
-          <Route
-            path="/change-password"
-            element={<ChangePassword msgAlert={msgAlert} user={null} />}
-          />
+          {user && (
+            <Route
+              path="/sign-out"
+              element={
+                <SignOut
+                  msgAlert={msgAlert}
+                  clearUser={clearUser}
+                  user={user}
+                />
+              }
+            />
+          )}
+          {user && (
+            <Route
+              path="/change-password"
+              element={<ChangePassword msgAlert={msgAlert} user={null} />}
+            />
+          )}
         </Routes>
       </main>
     </Fragment>
