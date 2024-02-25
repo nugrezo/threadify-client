@@ -1,28 +1,33 @@
-import { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { signOut } from "../../api/auth";
 import messages from "../AutoDismissAlert/messages";
 
-class SignOut extends Component {
-  componentDidMount() {
-    const { msgAlert, history, clearUser, user } = this.props;
+const SignOut = ({ msgAlert, clearUser, user }) => {
+  const navigate = useNavigate();
 
-    signOut(user)
-      .finally(() =>
+  useEffect(() => {
+    const handleSignOut = async () => {
+      try {
+        await signOut(user);
         msgAlert({
           heading: "Signed Out Successfully",
-          messagE: messages.signOutSuccess,
+          message: messages.signOutSuccess,
           variant: "success",
-        })
-      )
-      .finally(() => history.push("/"))
-      .finally(() => clearUser());
-  }
+        });
+      } catch (error) {
+        console.error("Sign Out failed with error:", error);
+      } finally {
+        navigate("/");
+        clearUser();
+      }
+    };
 
-  render() {
-    return "";
-  }
-}
+    handleSignOut();
+  }, [msgAlert, navigate, clearUser, user]);
 
-export default withRouter(SignOut);
+  return null;
+};
+
+export default SignOut;

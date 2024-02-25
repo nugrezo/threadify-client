@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import "./SignIn.css";
 
@@ -9,27 +9,24 @@ import messages from "../AutoDismissAlert/messages";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-class SignIn extends Component {
-  constructor() {
-    super();
+const SignIn = ({ msgAlert, setUser }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+  const navigate = useNavigate();
 
-  handleChange = (event) =>
-    this.setState({
+  const handleChange = (event) =>
+    setFormData({
+      ...formData,
       [event.target.name]: event.target.value,
     });
 
-  onSignIn = (event) => {
+  const onSignIn = (event) => {
     event.preventDefault();
 
-    const { msgAlert, history, setUser } = this.props;
-
-    signIn(this.state)
+    signIn(formData)
       .then((res) => setUser(res.data.user))
       .then(() =>
         msgAlert({
@@ -38,9 +35,12 @@ class SignIn extends Component {
           variant: "success",
         })
       )
-      .then(() => history.push("/"))
+      .then(() => navigate("/"))
       .catch((error) => {
-        this.setState({ email: "", password: "" });
+        setFormData({
+          email: "",
+          password: "",
+        });
         msgAlert({
           heading: "Sign In Failed with error: " + error.message,
           message: messages.signInFailure,
@@ -49,50 +49,48 @@ class SignIn extends Component {
       });
   };
 
-  render() {
-    const { email, password } = this.state;
+  const { email, password } = formData;
 
-    return (
-      <div className="row">
-        <div className="sign-in-form col-sm-10 col-md-8 mx-auto mt-5">
-          <h3 className="sign-in--title">Sign In to your Account</h3>
-          <Form className="sign-in--form" onSubmit={this.onSignIn}>
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                required
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Enter email"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                required
-                name="password"
-                value={password}
-                type="password"
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Button className="sign-in--btn" variant="primary" type="submit">
-              Sign In
-            </Button>
-            <div className="navigate-sign-in">
-              <p className="have-account">Have an account?</p>
-              <Nav.Link className="navigate--sign-in" href="#sign-up">
-                Sign Up
-              </Nav.Link>
-            </div>
-          </Form>
-        </div>
+  return (
+    <div className="row">
+      <div className="sign-in-form col-sm-10 col-md-8 mx-auto mt-5">
+        <h3 className="sign-in--title">Sign In to your Account</h3>
+        <Form className="sign-in--form" onSubmit={onSignIn}>
+          <Form.Group controlId="email">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              required
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Enter email"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              required
+              name="password"
+              value={password}
+              type="password"
+              placeholder="Password"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Button className="sign-in--btn" variant="primary" type="submit">
+            Sign In
+          </Button>
+          <div className="navigate-sign-in">
+            <p className="have-account">Have an account?</p>
+            <Nav.Link className="navigate--sign-in" href="#sign-up">
+              Sign Up
+            </Nav.Link>
+          </div>
+        </Form>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default withRouter(SignIn);
+export default SignIn;
