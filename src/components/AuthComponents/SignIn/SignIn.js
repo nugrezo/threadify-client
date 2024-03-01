@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import "./SignIn.css";
 
-import { signIn } from "../../api/auth";
-import messages from "../AutoDismissAlert/messages";
+import { signIn } from "../../../api/auth";
+import messages from "../../AutoDismissAlert/messages";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -35,7 +35,7 @@ const SignIn = ({ msgAlert, setUser }) => {
           variant: "success",
         })
       )
-      .then(() => navigate("/"))
+      .then(() => navigate("/home"))
       .catch((error) => {
         setFormData({
           email: "",

@@ -56,8 +56,7 @@ const Header = ({ user }) => (
     <Navbar.Brand className="brand" href="#">
       Threadify
     </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse className="collapse" id="basic-navbar-nav">
+    <div>
       <Nav className="ml-auto">
         {user && (
           <span className="navbar-text mr-2">
@@ -67,7 +66,7 @@ const Header = ({ user }) => (
         {alwaysOptions}
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
-    </Navbar.Collapse>
+    </div>
   </Navbar>
 );
 

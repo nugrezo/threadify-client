@@ -4,10 +4,13 @@ import { Route, Routes } from "react-router-dom";
 // import AuthenticatedRoute from "../AuthenticatedRoute/AuthenticatedRoute";
 import AutoDismissAlert from "../AutoDismissAlert/AutoDismissAlert";
 import Header from "../Header/Header";
-import SignUp from "../SignUp/SignUp";
-import SignIn from "../SignIn/SignIn";
-import SignOut from "../SignOut/SignOut";
 import ChangePassword from "../ChangePassword/ChangePassword";
+import SignUp from "../AuthComponents/SignUp/SignUp";
+import SignOut from "../AuthComponents/SignOut/SignOut";
+import SignIn from "../AuthComponents/SignIn/SignIn";
+import CreateThread from "../ThreadComponents/CreateThread/CreateThread";
+import IndexThreads from "../ThreadComponents/IndexThreads/IndexThreads";
+import Icon from "../ThreadComponents/Icon/Icon";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +61,12 @@ function App() {
               element={<ChangePassword msgAlert={msgAlert} user={null} />}
             />
           )}
+          <Route path="/home" element={<Icon />} />
+          <Route path="/threads" element={<IndexThreads user={user} />} />
+          <Route
+            path="/post"
+            element={<CreateThread msgAlert={msgAlert} user={user} />}
+          />
         </Routes>
       </main>
     </Fragment>

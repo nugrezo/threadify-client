@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { signOut } from "../../api/auth";
-import messages from "../AutoDismissAlert/messages";
+import { signOut } from "../../../api/auth";
+import messages from "../../AutoDismissAlert/messages";
 
 const SignOut = ({ msgAlert, clearUser, user }) => {
   const navigate = useNavigate();

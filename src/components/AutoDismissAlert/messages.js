@@ -9,4 +9,5 @@ export default {
   changePasswordSuccess: "Password changed successfully!",
   changePasswordFailure:
     "Failed to change passwords. Check your old password and try again.",
+  createThreadSucess: "Thread created successfully",
 };

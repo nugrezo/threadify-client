@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import "./SignUp.css";
 
-import { signUp, signIn } from "../../api/auth";
-import messages from "../AutoDismissAlert/messages";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { signIn, signUp } from "../../../api/auth";
+import messages from "../../AutoDismissAlert/messages";
 
 const SignUp = ({ msgAlert, setUser }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
+    username: "",
     password: "",
     passwordConfirmation: "",
   });
@@ -34,7 +34,7 @@ const SignUp = ({ msgAlert, setUser }) => {
         message: messages.signUpSuccess,
         variant: "success",
       });
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       setFormData({
         email: "",
@@ -62,6 +62,17 @@ const SignUp = ({ msgAlert, setUser }) => {
               name="email"
               value={formData.email}
               placeholder="Enter email"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="username">
+            <Form.Label>User Name</Form.Label>
+            <Form.Control
+              required
+              type="username"
+              name="username"
+              value={formData.username}
+              placeholder="User Name"
               onChange={handleChange}
             />
           </Form.Group>
