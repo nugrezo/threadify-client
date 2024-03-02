@@ -26,10 +26,12 @@ const IndexThreads = ({ user }) => {
       <Icon onSetAllIndex={onSetAllIndex} />
       <div className="create-thread-container">
         <div className="create-thread-form col-sm-10 col-md-8 mx-auto mt-5">
-          <h2>Threads:</h2>
           <ul>
             {threads.map((thread) => (
-              <li key={thread.id}>{thread.text}</li>
+              <li key={thread.id}>
+                {thread.username}
+                {thread.text}
+              </li>
             ))}
           </ul>
         </div>
