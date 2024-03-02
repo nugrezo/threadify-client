@@ -60,7 +60,7 @@ const Header = ({ user }) => (
       <Nav className="ml-auto">
         {user && (
           <span className="navbar-text mr-2">
-            Welcome, <strong>{user.email}</strong>
+            Welcome, <strong>{user.username}</strong>
           </span>
         )}
         {alwaysOptions}

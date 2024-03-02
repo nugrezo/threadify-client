@@ -50,3 +50,88 @@
   width: 48px;
   height: 48px;
 }
+
+.react__container {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+  order: 1;
+}
+
+.create-comment--btn {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #cc5de8;
+  color: #f3d9fa;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.07);
+}
+
+.create-comment--btn:hover {
+  background-color: #be4bdb;
+  stroke: #e599f7;
+  font-weight: bold;
+}
+
+.like-icon,
+.comment-icon {
+  width: 18px;
+  height: 18px;
+  stroke: #f3d9fa;
+}
+
+.create-comment--btn:hover svg {
+  stroke: #fff;
+  font-weight: bold;
+}
+
+.btn-primary {
+  --bs-btn-active-bg: #9c36b5;
+  font-weight: bold;
+}
+
+.modal-background {
+  position: relative;
+}
+
+.modal-background.show::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  z-index: 999; /* Ensure it's above everything else */
+}
+
+.comment-add-btn {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  background-color: #cc5de8;
+  border-radius: 16px;
+  color: #f3d9fa;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.07);
+}
+
+.comment-add-btn:hover {
+  background-color: #be4bdb;
+  stroke: #e599f7;
+  font-weight: bold;
+}
+
+.comment-add-btn:active {
+  background-color: #9c36b5;
+  font-weight: bold;
+}

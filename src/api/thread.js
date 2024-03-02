@@ -60,3 +60,18 @@ export const showThread = (user, id) => {
     },
   });
 };
+
+export const createCommentThread = (user, comments, id) => {
+  return axios({
+    url: apiUrl + "/threads" + id,
+    method: "POST",
+    headers: {
+      Authorization: `Token token=${user.token}`,
+    },
+    data: {
+      comments: {
+        text: comments.text,
+      },
+    },
+  });
+};
