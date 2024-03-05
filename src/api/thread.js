@@ -2,6 +2,7 @@ import apiUrl from "../apiConfig";
 import axios from "axios";
 
 export const createThread = (thread, user) => {
+  console.log("Inside createThread - user:", user);
   return axios({
     method: "POST",
     url: apiUrl + "/threads",
@@ -17,6 +18,7 @@ export const createThread = (thread, user) => {
 };
 
 export const getAllThreads = (user) => {
+  console.log("Inside getAllThreads - user:", user);
   return axios({
     url: apiUrl + "/threads",
     method: "GET",
@@ -38,7 +40,7 @@ export const deleteThread = (user, id) => {
 
 export const updateThread = (thread, user, id) => {
   return axios({
-    url: apiUrl + "/threads" + id,
+    url: apiUrl + "/threads/" + id,
     method: "PATCH",
     headers: {
       Authorization: `Token token=${user.token}`,
@@ -53,7 +55,7 @@ export const updateThread = (thread, user, id) => {
 
 export const showThread = (user, id) => {
   return axios({
-    url: apiUrl + "/threads" + id,
+    url: apiUrl + "/threads/" + id,
     method: "GET",
     headers: {
       Authorization: `Token token=${user.token}`,
@@ -61,16 +63,17 @@ export const showThread = (user, id) => {
   });
 };
 
-export const createCommentThread = (user, comments, id) => {
+export const createCommentThread = (comment, user, id) => {
+  console.log("Inside createCommentThread - user:", user);
   return axios({
-    url: apiUrl + "/threads" + id,
+    url: apiUrl + "/threads/" + id + "/comment",
     method: "POST",
     headers: {
       Authorization: `Token token=${user.token}`,
     },
     data: {
-      comments: {
-        text: comments.text,
+      comment: {
+        text: comment.text,
       },
     },
   });

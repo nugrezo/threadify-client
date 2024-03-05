@@ -28,11 +28,10 @@ const CreateThread = ({ msgAlert, user }) => {
     event.preventDefault();
 
     try {
-      const response = await createThread(formData, user);
+      await createThread(formData, user);
       setFormData({
         text: "",
       });
-      console.log(`response is ${response}`);
       msgAlert({
         heading: "CREATE SUCCESS",
         message: messages.createThreadSucess,

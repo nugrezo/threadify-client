@@ -1,27 +1,83 @@
 import React, { useState, useEffect } from "react";
 
 import "./IndexThreads.css";
-import { getAllThreads } from "../../../api/thread";
+import { getAllThreads, createCommentThread } from "../../../api/thread";
 import Icon from "../Icon/Icon";
 import { Button } from "react-bootstrap";
+import messages from "../../AutoDismissAlert/messages";
+import Form from "react-bootstrap/Form";
 
-const IndexThreads = ({ user }) => {
+const IndexThreads = ({ msgAlert, user }) => {
   const [threads, setThreads] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [selectedThreadId, setSelectedThreadId] = useState(null);
+  const [formData, setFormData] = useState({
+    text: "",
+    user,
+  });
 
-  const onSetAllIndex = useEffect(() => {
-    const fetchThreads = async () => {
-      try {
-        const response = await getAllThreads(user);
-        setThreads(response.data.threads);
-        console.log(response.data.threads);
-      } catch (error) {
-        console.error("Failed to fetch threads:", error);
-      }
-    };
+  const onSetAllIndex = async () => {
+    try {
+      const response = await getAllThreads(user);
+      setThreads(response.data.threads);
+      console.log(`response.data is ${JSON.stringify(response.data)}`);
 
-    fetchThreads();
+      // Assuming there's a function to handle route change
+      // Replace the following line with the actual route change logic
+      // changeRouteFunction();
+    } catch (error) {
+      console.error("Failed to fetch threads:", error);
+    }
+  };
+
+  useEffect(() => {
+    onSetAllIndex();
   }, [user]);
+
+  const handleCommentChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevComment) => {
+      const newData = { ...prevComment, [name]: value };
+      return newData;
+    });
+  };
+
+  const onCreateCommentThread = async (event) => {
+    console.log("onCreateCommentThread function is called");
+    event.preventDefault();
+
+    try {
+      console.log("selectedThreadId:", selectedThreadId);
+      console.log("Before API call - user:", user);
+      console.log("Token before request:", user.token);
+      console.log("formData:", formData);
+      await createCommentThread(formData, user, selectedThreadId);
+      setFormData({
+        text: "",
+      });
+
+      msgAlert({
+        heading: "CREATE COMMENT SUCCESS",
+        message: messages.createCommentSucess,
+        variant: "success",
+      });
+    } catch (error) {
+      console.error("Thread Creation Failed:", error);
+
+      msgAlert({
+        heading: "Create Comment to Thread Failed with error: " + error.message,
+        message: messages.createCommentFailure,
+        variant: "danger",
+      });
+    }
+  };
+
+  const handleComment = (threadId, user) => {
+    setShowModal(true);
+    setSelectedThreadId(threadId);
+    console.log("User object before API call:", user);
+    console.log(`Chosen thread ID: ${threadId}`);
+  };
 
   return (
     <div className={`modal-background ${showModal ? "show" : ""}`}>
@@ -64,7 +120,6 @@ const IndexThreads = ({ user }) => {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    onClick={"handleLikeFunction"}
                     className="like-icon"
                   >
                     <path
@@ -75,7 +130,7 @@ const IndexThreads = ({ user }) => {
                   </svg>
                 </Button>
                 <Button
-                  onClick={() => setShowModal(true)}
+                  onClick={() => handleComment(thread._id, user)}
                   className="create-comment--btn"
                   variant="primary"
                   type="submit"
@@ -101,25 +156,38 @@ const IndexThreads = ({ user }) => {
                       <div className="modal-content">
                         <div className="modal-header">
                           <h5 className="modal-title">Add Comment</h5>
-                          <button
+                          <Button
                             type="button"
                             className="btn-close"
                             aria-label="Close"
                             onClick={() => setShowModal(false)}
-                          ></button>
+                          ></Button>
                         </div>
-                        <div className="modal-body">
-                          <textarea
-                            placeholder="Enter your comment here..."
-                            rows={4}
-                            className="form-control"
-                          />
-                        </div>
-                        <div className="modal-footer">
-                          <button type="button" className="comment-add-btn">
-                            Add
-                          </button>
-                        </div>
+                        <Form onSubmit={onCreateCommentThread}>
+                          <Form.Group className="form-comment">
+                            <Form.Control
+                              as="textarea"
+                              placeholder="Enter your comment here..."
+                              rows={5}
+                              className="form-control"
+                              name="text"
+                              value={formData.text}
+                              onChange={handleCommentChange}
+                            />
+                          </Form.Group>
+                          <div className="modal-footer">
+                            <Button type="submit" className="comment-add-btn">
+                              Add
+                            </Button>
+                            <Button
+                              type="button"
+                              className="comment-cancel-btn"
+                              onClick={() => setShowModal(false)}
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                        </Form>
                       </div>
                     </div>
                   </div>

@@ -62,7 +62,10 @@ function App() {
             />
           )}
           <Route path="/home" element={<Icon />} />
-          <Route path="/threads" element={<IndexThreads user={user} />} />
+          <Route
+            path="/threads"
+            element={<IndexThreads msgAlert={msgAlert} user={user} />}
+          />
           <Route
             path="/post"
             element={<CreateThread msgAlert={msgAlert} user={user} />}

@@ -10,4 +10,6 @@ export default {
   changePasswordFailure:
     "Failed to change passwords. Check your old password and try again.",
   createThreadSucess: "Thread created successfully",
+  createCommentSucess: "Comment is created successfully",
+  createCommentFailure: "Comment is not created. Failure",
 };
