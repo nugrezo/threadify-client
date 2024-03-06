@@ -26,14 +26,35 @@
   color: #343a40;
   padding: 20px;
   width: 100%;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
 }
 
+.index-thread--item {
+  display: flex;
+}
+
+.separator {
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.comment-item {
+  display: flex;
+  margin: 16px 32px;
+}
+
+.comment-text {
+  padding-left: 15px;
+}
+
 .index-threads--items-info {
-  width: 800px;
+  width: 100%;
   margin-left: 12px;
 }
 
@@ -53,9 +74,8 @@
 
 .react__container {
   display: flex;
+  flex-direction: column;
   gap: 3px;
-  flex: 1;
-  order: 1;
 }
 
 .create-comment--btn {
@@ -176,6 +196,14 @@
 .comment-cancel-btn:active {
   background-color: #e03131;
   font-weight: bold;
+}
+
+.comment-username {
+  font-weight: bold;
+}
+
+.comment-username .no-style {
+  font-weight: normal;
 }
 
 .form-comment {
