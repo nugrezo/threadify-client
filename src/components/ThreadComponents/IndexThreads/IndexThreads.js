@@ -55,7 +55,7 @@ const IndexThreads = ({ msgAlert, user }) => {
       setFormData({
         text: "",
       });
-
+      setShowModal(false);
       msgAlert({
         heading: "CREATE COMMENT SUCCESS",
         message: messages.createCommentSucess,
