@@ -39,6 +39,8 @@ export const deleteThread = (user, id) => {
 };
 
 export const updateThread = (thread, user, id) => {
+  console.log(`inside the updateThread id is ${id}`);
+
   return axios({
     url: apiUrl + "/threads/" + id,
     method: "PATCH",

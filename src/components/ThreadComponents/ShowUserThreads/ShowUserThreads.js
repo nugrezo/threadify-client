@@ -4,7 +4,7 @@ import "./ShowUserThreads.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import { showThread } from "../../../api/thread";
+import { showThread, updateThread, deleteThread } from "../../../api/thread";
 import messages from "../../AutoDismissAlert/messages";
 import Icon from "../Icon/Icon";
 
@@ -12,50 +12,18 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   const [userThreads, setUserThreads] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [threadId, setThreadId] = useState("");
-
-  //   const onSetAllIndex = async () => {
-  //     try {
-  //       const response = await showThread(user, threadId);
-  //       setUserThreads(response.data.threads);
-  //       console.log(`response.data is ${JSON.stringify(response.data)}`);
-
-  //       // Assuming there's a function to handle route change
-  //       // Replace the following line with the actual route change logic
-  //       // changeRouteFunction();
-  //     } catch (error) {
-  //       console.error("Failed to fetch threads:", error);
-  //     }
-  //   };
-
-  //   const handleUpdateChange = (event) => {
-  //     const { name, value } = event.target;
-  //     setUserThreads((prevData) => {
-  //       const newData = { ...prevData, [name]: value };
-  //       return newData;
-  //     });
-  //   };
-
-  const handleUpdate = (id, user) => {
-    console.log(`selected thread is is ${id}`);
-    setShowModal(true);
-    setThreadId(id);
-    console.log("User object before API call:", user);
-  };
+  const [updatedText, setUpdatedText] = useState("");
 
   const onShowUserThreads = async () => {
     try {
       const response = await showThread(user, threadId);
-      console.log(`all threads user is ${JSON.stringify(user)}`);
       const filteredThreadsBasedOnOwner = response.data.threads.filter(
         (thread) => thread.owner === user._id
       );
       setUserThreads(filteredThreadsBasedOnOwner);
 
-      console.log(
-        `filtered thread is ${JSON.stringify(filteredThreadsBasedOnOwner)}`
-      );
       msgAlert({
-        heading: "DISPLAY MY THREADS SUCCESS ",
+        heading: "DISPLAY MY THREADS SUCCESS",
         message: messages.displayUserThreadsSuccess,
         variant: "success",
       });
@@ -73,6 +41,70 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   useEffect(() => {
     onShowUserThreads();
   }, [user]);
+
+  const handleUpdate = (selectedThreadId) => {
+    setShowModal(true);
+    setThreadId(selectedThreadId);
+    setUpdatedText(
+      userThreads.find((thread) => thread._id === selectedThreadId)?.text || ""
+    );
+  };
+
+  const onUpdateThread = async () => {
+    try {
+      await updateThread({ text: updatedText }, user, threadId);
+
+      const updatedThreads = userThreads.map((thread) =>
+        thread._id === threadId ? { ...thread, text: updatedText } : thread
+      );
+      setUserThreads(updatedThreads);
+
+      setShowModal(false);
+
+      msgAlert({
+        heading: "UPDATE THREAD SUCCESS",
+        message: messages.updateThreadSuccess,
+        variant: "success",
+      });
+    } catch (error) {
+      console.error("Thread update failed:", error);
+
+      msgAlert({
+        heading: "Update Thread Failed with error: " + error.message,
+        message: messages.updateThreadFailure,
+        variant: "danger",
+      });
+    }
+  };
+
+  const handleUpdateChange = (event) => {
+    setUpdatedText(event.target.value);
+  };
+
+  const onDeleteUserThread = async (threadId) => {
+    try {
+      await deleteThread(user, threadId);
+
+      const updatedThreads = userThreads.filter(
+        (thread) => thread._id !== threadId
+      );
+      setUserThreads(updatedThreads);
+
+      msgAlert({
+        heading: "DELETE THREAD SUCCESS",
+        message: messages.deleteThreadSuccess,
+        variant: "success",
+      });
+    } catch (error) {
+      console.error("Thread deletion failed:", error);
+
+      msgAlert({
+        heading: "Delete Thread Failed with error: " + error.message,
+        message: messages.deleteThreadFailure,
+        variant: "danger",
+      });
+    }
+  };
 
   return (
     <div className={`modal-background ${showModal ? "show" : ""}`}>
@@ -108,14 +140,15 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                 </div>
                 <div className="react__container">
                   <Button
-                    onClick={() => handleUpdate(userThread.id, user)}
+                    onClick={() => handleUpdate(userThread._id)}
                     className="create-comment--btn"
                     variant="primary"
-                    type="submit"
+                    type="button"
                   >
                     Edit
                   </Button>
                   <Button
+                    onClick={() => onDeleteUserThread(userThread._id)}
                     className="create-comment--btn"
                     variant="primary"
                     type="button"
@@ -136,7 +169,12 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                               onClick={() => setShowModal(false)}
                             ></Button>
                           </div>
-                          <Form onSubmit={onShowUserThreads}>
+                          <Form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              onUpdateThread();
+                            }}
+                          >
                             <Form.Group className="form-comment">
                               <Form.Control
                                 as="textarea"
@@ -144,8 +182,8 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                                 rows={5}
                                 className="form-control"
                                 name="text"
-                                value={userThreads.text}
-                                // onChange={handleUpdateChange}
+                                value={updatedText}
+                                onChange={handleUpdateChange}
                               />
                             </Form.Group>
                             <div className="modal-footer">
