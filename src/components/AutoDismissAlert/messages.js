@@ -12,4 +12,6 @@ export default {
   createThreadSucess: "Thread created successfully",
   createCommentSucess: "Comment is created successfully",
   createCommentFailure: "Comment is not created. Failure",
+  displayUserThreadsSuccess: "Displaying all my threads.",
+  displayUserThreadsFailure: "Can`t be displayed for the moment",
 };

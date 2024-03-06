@@ -11,6 +11,7 @@ import SignIn from "../AuthComponents/SignIn/SignIn";
 import CreateThread from "../ThreadComponents/CreateThread/CreateThread";
 import IndexThreads from "../ThreadComponents/IndexThreads/IndexThreads";
 import Icon from "../ThreadComponents/Icon/Icon";
+import ShowUserThreads from "../ThreadComponents/ShowUserThreads/ShowUserThreads";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -69,6 +70,10 @@ function App() {
           <Route
             path="/post"
             element={<CreateThread msgAlert={msgAlert} user={user} />}
+          />
+          <Route
+            path="/userthreads"
+            element={<ShowUserThreads msgAlert={msgAlert} user={user} />}
           />
         </Routes>
       </main>

@@ -26,7 +26,7 @@ const Icon = ({ onSetAllIndex }) => {
   };
 
   const handleNavigateAllPosts = () => {
-    navigate("/allthreads");
+    navigate("/userthreads");
   };
 
   return (
