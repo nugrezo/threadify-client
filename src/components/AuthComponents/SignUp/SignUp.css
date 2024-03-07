@@ -81,8 +81,13 @@
   font-weight: bold;
 }
 
+.sign-up--btn:active {
+  --bs-btn-active-bg: #e64980;
+  font-weight: bold;
+}
+
 .btn-primary {
-  --bs-btn-active-bg: #a61e4d;
+  --bs-btn-active-bg: none;
   font-weight: bold;
 }
 

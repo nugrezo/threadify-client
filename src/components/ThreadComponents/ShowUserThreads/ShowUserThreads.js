@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./ShowUserThreads.css";
-import { showThread } from "../../../api/thread";
+
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+import { showThread, updateThread, deleteThread } from "../../../api/thread";
 import messages from "../../AutoDismissAlert/messages";
 import Icon from "../Icon/Icon";
-import Button from "react-bootstrap/Button";
-import DeleteUserThread from "../DeleteUserThread/DeleteUserThread";
-import UpdateUserThread from "../UpdateThread/UpdateUserThread";
 
 const ShowUserThreads = ({ msgAlert, user }) => {
   const [userThreads, setUserThreads] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [threadId, setThreadId] = useState("");
+  const [updatedText, setUpdatedText] = useState("");
 
   const onShowUserThreads = async () => {
     try {
@@ -43,35 +45,75 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   const handleUpdate = (selectedThreadId) => {
     setShowModal(true);
     setThreadId(selectedThreadId);
+    setUpdatedText(
+      userThreads.find((thread) => thread._id === selectedThreadId)?.text || ""
+    );
   };
 
-  const onUpdateSuccess = async () => {
-    setShowModal(false);
-    await onShowUserThreads();
-    msgAlert({
-      heading: "UPDATE THREAD SUCCESS",
-      message: messages.updateThreadSuccess,
-      variant: "success",
-    });
+  const onUpdateThread = async () => {
+    try {
+      await updateThread({ text: updatedText }, user, threadId);
+
+      const updatedThreads = userThreads.map((thread) =>
+        thread._id === threadId ? { ...thread, text: updatedText } : thread
+      );
+      setUserThreads(updatedThreads);
+
+      setShowModal(false);
+
+      msgAlert({
+        heading: "UPDATE THREAD SUCCESS",
+        message: messages.updateThreadSuccess,
+        variant: "success",
+      });
+    } catch (error) {
+      console.error("Thread update failed:", error);
+
+      msgAlert({
+        heading: "Update Thread Failed with error: " + error.message,
+        message: messages.updateThreadFailure,
+        variant: "danger",
+      });
+    }
   };
 
-  const onDeleteSuccess = async () => {
-    await onShowUserThreads();
-    msgAlert({
-      heading: "DELETE THREAD SUCCESS",
-      message: messages.deleteThreadSuccess,
-      variant: "success",
-    });
+  const handleUpdateChange = (event) => {
+    setUpdatedText(event.target.value);
+  };
+
+  const onDeleteUserThread = async (threadId) => {
+    try {
+      await deleteThread(user, threadId);
+
+      const updatedThreads = userThreads.filter(
+        (thread) => thread._id !== threadId
+      );
+      setUserThreads(updatedThreads);
+
+      msgAlert({
+        heading: "DELETE THREAD SUCCESS",
+        message: messages.deleteThreadSuccess,
+        variant: "success",
+      });
+    } catch (error) {
+      console.error("Thread deletion failed:", error);
+
+      msgAlert({
+        heading: "Delete Thread Failed with error: " + error.message,
+        message: messages.deleteThreadFailure,
+        variant: "danger",
+      });
+    }
   };
 
   return (
     <div className={`modal-background ${showModal ? "show" : ""}`}>
       <Icon />
-      <div className="index-threads">
-        <div className="index-threads--items col-sm-10 col-md-8 mx-auto mt-5">
+      <div className="user-threads">
+        <div className="user-threads--items col-sm-10 col-md-8 mx-auto mt-5">
           {userThreads.map((userThread) => (
-            <div className="index-threads--items-all" key={userThread.id}>
-              <div className="index-thread--item">
+            <div className="user-threads--items-all" key={userThread.id}>
+              <div className="user-thread--item">
                 <div className="profilephoto-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -88,35 +130,38 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                     />
                   </svg>
                 </div>
-                <div className="index-threads--items-info">
-                  <p className="index-threads--items-info-username">
+                <div className="user-threads--items-info">
+                  <p className="user-threads--items-info-username">
                     {userThread.username}
                   </p>
-                  <p className="index-threads--items-info-text">
+                  <p className="user-threads--items-info-text">
                     {userThread.text}
                   </p>
                 </div>
                 <div className="react__container">
                   <Button
                     onClick={() => handleUpdate(userThread._id)}
-                    className="create-comment--btn"
+                    className="edit-thread--btn"
                     variant="primary"
                     type="button"
                   >
                     Edit
                   </Button>
-                  <DeleteUserThread
-                    user={user}
-                    threadId={userThread._id}
-                    onDeleteSuccess={onDeleteSuccess}
-                  />
+                  <Button
+                    onClick={() => onDeleteUserThread(userThread._id)}
+                    className="delete-thread--btn"
+                    variant="primary"
+                    type="button"
+                  >
+                    Delete
+                  </Button>
 
                   {showModal && (
                     <div className="modal" style={{ display: "block" }}>
                       <div className="modal-dialog">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <h5 className="modal-title">Edit Comment</h5>
+                            <h5 className="modal-title">Edit Thread</h5>
                             <Button
                               type="button"
                               className="btn-close"
@@ -124,12 +169,39 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                               onClick={() => setShowModal(false)}
                             ></Button>
                           </div>
-                          <UpdateUserThread
-                            user={user}
-                            threadId={threadId}
-                            initialText={userThread.text}
-                            onUpdateSuccess={onUpdateSuccess}
-                          />
+                          <Form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              onUpdateThread();
+                            }}
+                          >
+                            <Form.Group className="form-thread">
+                              <Form.Control
+                                as="textarea"
+                                placeholder="Enter your update thread"
+                                rows={5}
+                                className="form-control"
+                                name="text"
+                                value={updatedText}
+                                onChange={handleUpdateChange}
+                              />
+                            </Form.Group>
+                            <div className="modal-footer">
+                              <Button
+                                type="submit"
+                                className="update-thread-add-btn"
+                              >
+                                Save
+                              </Button>
+                              <Button
+                                type="button"
+                                className="update-thread-cancel-btn"
+                                onClick={() => setShowModal(false)}
+                              >
+                                Cancel
+                              </Button>
+                            </div>
+                          </Form>
                         </div>
                       </div>
                     </div>

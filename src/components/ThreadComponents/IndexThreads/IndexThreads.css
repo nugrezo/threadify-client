@@ -157,20 +157,24 @@
   cursor: pointer;
   border: none;
   font-weight: bold;
-  background-color: #cc5de8;
+  background-color: #40c057;
   border-radius: 50px;
-  color: #f3d9fa;
+  color: #ebfbee;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comment-add-btn:hover {
-  background-color: #be4bdb;
-  stroke: #e599f7;
+  background-color: #37b24d;
   font-weight: bold;
 }
 
 .comment-add-btn:active {
-  background-color: #9c36b5;
+  --bs-btn-active-bg: #2f9e44;
+  font-weight: bold;
+}
+
+.btn-primary {
+  --bs-btn-active-bg: #9c36b5;
   font-weight: bold;
 }
 
@@ -195,7 +199,7 @@
   font-weight: bold;
 }
 .comment-cancel-btn:active {
-  background-color: #e03131;
+  --bs-btn-active-bg: #e03131;
   font-weight: bold;
 }
 
