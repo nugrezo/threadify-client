@@ -1,13 +1,10 @@
-/* eslint-disable indent */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import "./IndexThreads.css";
-import { getAllThreads, createCommentThread } from "../../../api/thread";
+import { getAllThreads } from "../../../api/thread";
 import Icon from "../Icon/Icon";
 import { Button } from "react-bootstrap";
-import messages from "../../AutoDismissAlert/messages";
-import Form from "react-bootstrap/Form";
+import CreateCommentThread from "../ReactThread/CreateCommentThread";
+import "./IndexThreads.css";
 
 const IndexThreads = ({ msgAlert, user }) => {
   const navigate = useNavigate();
@@ -24,10 +21,6 @@ const IndexThreads = ({ msgAlert, user }) => {
       const response = await getAllThreads(user);
       setThreads(response.data.threads);
       console.log(`response.data is ${JSON.stringify(response.data)}`);
-
-      // Assuming there's a function to handle route change
-      // Replace the following line with the actual route change logic
-      // changeRouteFunction();
     } catch (error) {
       console.error("Failed to fetch threads:", error);
     }
@@ -36,58 +29,6 @@ const IndexThreads = ({ msgAlert, user }) => {
   useEffect(() => {
     onSetAllIndex();
   }, []);
-
-  const handleCommentChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevComment) => {
-      const newData = { ...prevComment, [name]: value };
-      return newData;
-    });
-  };
-
-  const onCreateCommentThread = async (event) => {
-    console.log("onCreateCommentThread function is called");
-    event.preventDefault();
-
-    try {
-      console.log("selectedThreadId:", selectedThreadId);
-      console.log("Before API call - user:", user);
-      console.log("Token before request:", user.token);
-      console.log("formData:", formData);
-      await createCommentThread(formData, user, selectedThreadId);
-      setThreads((prevThreads) =>
-        prevThreads.map((thread) =>
-          thread._id === selectedThreadId
-            ? {
-                ...thread,
-                comments: [
-                  ...thread.comments,
-                  { ...formData, username: user.username },
-                ],
-              }
-            : thread
-        )
-      );
-      setFormData({
-        text: "",
-      });
-      setShowModal(false);
-      msgAlert({
-        heading: "CREATE COMMENT SUCCESS",
-        message: messages.createCommentSucess,
-        variant: "success",
-      });
-      navigate("/threads");
-    } catch (error) {
-      console.error("Thread Creation Failed:", error);
-
-      msgAlert({
-        heading: "Create Comment to Thread Failed with error: " + error.message,
-        message: messages.createCommentFailure,
-        variant: "danger",
-      });
-    }
-  };
 
   const handleComment = (threadId, user) => {
     setShowModal(true);
@@ -170,48 +111,17 @@ const IndexThreads = ({ msgAlert, user }) => {
                       />
                     </svg>
                   </Button>
-                  {showModal && (
-                    <div className="modal" style={{ display: "block" }}>
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title">Add Comment</h5>
-                            <Button
-                              type="button"
-                              className="btn-close"
-                              aria-label="Close"
-                              onClick={() => setShowModal(false)}
-                            ></Button>
-                          </div>
-                          <Form onSubmit={onCreateCommentThread}>
-                            <Form.Group className="form-comment">
-                              <Form.Control
-                                as="textarea"
-                                placeholder="Enter your comment here..."
-                                rows={5}
-                                className="form-control"
-                                name="text"
-                                value={formData.text}
-                                onChange={handleCommentChange}
-                              />
-                            </Form.Group>
-                            <div className="modal-footer">
-                              <Button type="submit" className="comment-add-btn">
-                                Add
-                              </Button>
-                              <Button
-                                type="button"
-                                className="comment-cancel-btn"
-                                onClick={() => setShowModal(false)}
-                              >
-                                Cancel
-                              </Button>
-                            </div>
-                          </Form>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  <CreateCommentThread
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                    selectedThreadId={selectedThreadId}
+                    setThreads={setThreads}
+                    setFormData={setFormData}
+                    formData={formData}
+                    user={user}
+                    msgAlert={msgAlert}
+                    navigate={navigate}
+                  />
                 </div>
               </div>
               <div className="comments-container">

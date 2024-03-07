@@ -1,100 +1,112 @@
-// import React, { useState } from "react";
+/* eslint-disable indent */
+import React from "react";
+import { Button, Form } from "react-bootstrap";
+import { createCommentThread } from "../../../api/thread";
+import messages from "../../AutoDismissAlert/messages";
+import "./CreateCommentThread.css";
 
-// import "./IndexThreads.css";
-// import { Button } from "react-bootstrap";
-// import messages from "../../AutoDismissAlert/messages";
-// import Form from "react-bootstrap/Form";
+const CreateCommentThread = ({
+  showModal,
+  setShowModal,
+  selectedThreadId,
+  setThreads,
+  setFormData,
+  formData,
+  user,
+  msgAlert,
+  navigate,
+}) => {
+  const handleCommentChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevComment) => ({ ...prevComment, [name]: value }));
+  };
 
-// const createCommentThread = ({ msgAlert, user }) => {
-//   const [showModal, setShowModal] = useState(false);
-//   const [formData, setFormData] = useState({
-//     text: "",
-//     user,
-//   });
+  const onCreateCommentThread = async (event) => {
+    event.preventDefault();
 
-//   const handleCommentChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormData((prevComment) => {
-//       const newData = { ...prevComment, [name]: value };
-//       return newData;
-//     });
-//   };
+    try {
+      await createCommentThread(formData, user, selectedThreadId);
+      setThreads((prevThreads) =>
+        prevThreads.map((thread) =>
+          thread._id === selectedThreadId
+            ? {
+                ...thread,
+                comments: [
+                  ...thread.comments,
+                  { ...formData, username: user.username },
+                ],
+              }
+            : thread
+        )
+      );
 
-//   const onCreateCommentThread = async (event) => {
-//     console.log("onCreateCommentThread function is called");
-//     event.preventDefault();
+      setFormData({ text: "" });
+      setShowModal(false);
 
-//     try {
-//       console.log("Before API call - user:", user);
-//       console.log("Token before request:", user.token);
-//       console.log("formData:", formData);
-//       await createCommentThread(formData, user);
-//       setFormData({
-//         text: "",
-//       });
-//       setShowModal(false);
-//       msgAlert({
-//         heading: "CREATE COMMENT SUCCESS",
-//         message: messages.createCommentSucess,
-//         variant: "success",
-//       });
-//     } catch (error) {
-//       console.error("Thread Creation Failed:", error);
+      msgAlert({
+        heading: "CREATE COMMENT SUCCESS",
+        message: messages.createCommentSucess,
+        variant: "success",
+      });
 
-//       msgAlert({
-//         heading: "Create Comment to Thread Failed with error: " + error.message,
-//         message: messages.createCommentFailure,
-//         variant: "danger",
-//       });
-//     }
-//   };
+      navigate("/threads");
+    } catch (error) {
+      console.error("Thread Creation Failed:", error);
 
-//   return (
-//     <div>
-//       {showModal && (
-//         <div className="modal" style={{ display: "block" }}>
-//           <div className="modal-dialog">
-//             <div className="modal-content">
-//               <div className="modal-header">
-//                 <h5 className="modal-title">Add Comment</h5>
-//                 <Button
-//                   type="button"
-//                   className="btn-close"
-//                   aria-label="Close"
-//                   onClick={() => setShowModal(false)}
-//                 ></Button>
-//               </div>
-//               <Form onSubmit={onCreateCommentThread}>
-//                 <Form.Group className="form-comment">
-//                   <Form.Control
-//                     as="textarea"
-//                     placeholder="Enter your comment here..."
-//                     rows={5}
-//                     className="form-control"
-//                     name="text"
-//                     value={formData.text}
-//                     onChange={handleCommentChange}
-//                   />
-//                 </Form.Group>
-//                 <div className="modal-footer">
-//                   <Button type="submit" className="comment-add-btn">
-//                     Add
-//                   </Button>
-//                   <Button
-//                     type="button"
-//                     className="comment-cancel-btn"
-//                     onClick={() => setShowModal(false)}
-//                   >
-//                     Cancel
-//                   </Button>
-//                 </div>
-//               </Form>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
+      msgAlert({
+        heading: "Create Comment to Thread Failed with error: " + error.message,
+        message: messages.createCommentFailure,
+        variant: "danger",
+      });
+    }
+  };
 
-// export default createCommentThread;
+  return (
+    <>
+      {showModal && (
+        <div className="modal" style={{ display: "block" }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Add Comment</h5>
+                <Button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={() => setShowModal(false)}
+                ></Button>
+              </div>
+              <Form onSubmit={onCreateCommentThread}>
+                <Form.Group className="form-comment">
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Enter your comment here..."
+                    rows={5}
+                    className="form-control"
+                    name="text"
+                    value={formData.text}
+                    onChange={handleCommentChange}
+                  />
+                </Form.Group>
+                <div className="modal-footer">
+                  <Button type="submit" className="comment-add-btn">
+                    Add
+                  </Button>
+                  <Button
+                    type="button"
+                    className="comment-cancel-btn"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default CreateCommentThread;
