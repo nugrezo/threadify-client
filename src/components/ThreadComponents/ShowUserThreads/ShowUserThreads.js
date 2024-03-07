@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./ShowUserThreads.css";
-
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-
-import { showThread, updateThread, deleteThread } from "../../../api/thread";
+import { showThread } from "../../../api/thread";
 import messages from "../../AutoDismissAlert/messages";
 import Icon from "../Icon/Icon";
+import Button from "react-bootstrap/Button";
+import DeleteUserThread from "../DeleteUserThread/DeleteUserThread";
+import UpdateUserThread from "../UpdateThread/UpdateUserThread";
 
 const ShowUserThreads = ({ msgAlert, user }) => {
   const [userThreads, setUserThreads] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [threadId, setThreadId] = useState("");
-  const [updatedText, setUpdatedText] = useState("");
 
   const onShowUserThreads = async () => {
     try {
@@ -45,65 +43,25 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   const handleUpdate = (selectedThreadId) => {
     setShowModal(true);
     setThreadId(selectedThreadId);
-    setUpdatedText(
-      userThreads.find((thread) => thread._id === selectedThreadId)?.text || ""
-    );
   };
 
-  const onUpdateThread = async () => {
-    try {
-      await updateThread({ text: updatedText }, user, threadId);
-
-      const updatedThreads = userThreads.map((thread) =>
-        thread._id === threadId ? { ...thread, text: updatedText } : thread
-      );
-      setUserThreads(updatedThreads);
-
-      setShowModal(false);
-
-      msgAlert({
-        heading: "UPDATE THREAD SUCCESS",
-        message: messages.updateThreadSuccess,
-        variant: "success",
-      });
-    } catch (error) {
-      console.error("Thread update failed:", error);
-
-      msgAlert({
-        heading: "Update Thread Failed with error: " + error.message,
-        message: messages.updateThreadFailure,
-        variant: "danger",
-      });
-    }
+  const onUpdateSuccess = async () => {
+    setShowModal(false);
+    await onShowUserThreads();
+    msgAlert({
+      heading: "UPDATE THREAD SUCCESS",
+      message: messages.updateThreadSuccess,
+      variant: "success",
+    });
   };
 
-  const handleUpdateChange = (event) => {
-    setUpdatedText(event.target.value);
-  };
-
-  const onDeleteUserThread = async (threadId) => {
-    try {
-      await deleteThread(user, threadId);
-
-      const updatedThreads = userThreads.filter(
-        (thread) => thread._id !== threadId
-      );
-      setUserThreads(updatedThreads);
-
-      msgAlert({
-        heading: "DELETE THREAD SUCCESS",
-        message: messages.deleteThreadSuccess,
-        variant: "success",
-      });
-    } catch (error) {
-      console.error("Thread deletion failed:", error);
-
-      msgAlert({
-        heading: "Delete Thread Failed with error: " + error.message,
-        message: messages.deleteThreadFailure,
-        variant: "danger",
-      });
-    }
+  const onDeleteSuccess = async () => {
+    await onShowUserThreads();
+    msgAlert({
+      heading: "DELETE THREAD SUCCESS",
+      message: messages.deleteThreadSuccess,
+      variant: "success",
+    });
   };
 
   return (
@@ -147,14 +105,11 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                   >
                     Edit
                   </Button>
-                  <Button
-                    onClick={() => onDeleteUserThread(userThread._id)}
-                    className="create-comment--btn"
-                    variant="primary"
-                    type="button"
-                  >
-                    Delete
-                  </Button>
+                  <DeleteUserThread
+                    user={user}
+                    threadId={userThread._id}
+                    onDeleteSuccess={onDeleteSuccess}
+                  />
 
                   {showModal && (
                     <div className="modal" style={{ display: "block" }}>
@@ -169,36 +124,12 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                               onClick={() => setShowModal(false)}
                             ></Button>
                           </div>
-                          <Form
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              onUpdateThread();
-                            }}
-                          >
-                            <Form.Group className="form-comment">
-                              <Form.Control
-                                as="textarea"
-                                placeholder="Enter your update thread"
-                                rows={5}
-                                className="form-control"
-                                name="text"
-                                value={updatedText}
-                                onChange={handleUpdateChange}
-                              />
-                            </Form.Group>
-                            <div className="modal-footer">
-                              <Button type="submit" className="comment-add-btn">
-                                Save
-                              </Button>
-                              <Button
-                                type="button"
-                                className="comment-cancel-btn"
-                                onClick={() => setShowModal(false)}
-                              >
-                                Cancel
-                              </Button>
-                            </div>
-                          </Form>
+                          <UpdateUserThread
+                            user={user}
+                            threadId={threadId}
+                            initialText={userThread.text}
+                            onUpdateSuccess={onUpdateSuccess}
+                          />
                         </div>
                       </div>
                     </div>
