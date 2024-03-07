@@ -61,7 +61,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               type="email"
               name="email"
               value={formData.email}
-              placeholder="Enter email"
+              placeholder="Enter your email"
               onChange={handleChange}
             />
           </Form.Group>
@@ -72,7 +72,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               type="username"
               name="username"
               value={formData.username}
-              placeholder="User Name"
+              placeholder="Enter your User Name"
               onChange={handleChange}
             />
           </Form.Group>
@@ -83,7 +83,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               name="password"
               value={formData.password}
               type="password"
-              placeholder="Password"
+              placeholder="Enter your Password"
               onChange={handleChange}
             />
           </Form.Group>

@@ -86,6 +86,10 @@
   font-weight: bold;
 }
 
+.sign-in--form input::placeholder {
+  color: #868e96;
+}
+
 .btn-primary {
   --bs-btn-active-bg: none;
   font-weight: bold;
