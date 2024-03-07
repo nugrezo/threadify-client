@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +35,7 @@ const IndexThreads = ({ msgAlert, user }) => {
 
   useEffect(() => {
     onSetAllIndex();
-  }, [user]);
+  }, []);
 
   const handleCommentChange = (event) => {
     const { name, value } = event.target;
@@ -54,6 +55,19 @@ const IndexThreads = ({ msgAlert, user }) => {
       console.log("Token before request:", user.token);
       console.log("formData:", formData);
       await createCommentThread(formData, user, selectedThreadId);
+      setThreads((prevThreads) =>
+        prevThreads.map((thread) =>
+          thread._id === selectedThreadId
+            ? {
+                ...thread,
+                comments: [
+                  ...thread.comments,
+                  { ...formData, username: user.username },
+                ],
+              }
+            : thread
+        )
+      );
       setFormData({
         text: "",
       });
@@ -63,7 +77,7 @@ const IndexThreads = ({ msgAlert, user }) => {
         message: messages.createCommentSucess,
         variant: "success",
       });
-      navigate("/post");
+      navigate("/threads");
     } catch (error) {
       console.error("Thread Creation Failed:", error);
 

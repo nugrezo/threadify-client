@@ -87,8 +87,8 @@
   cursor: pointer;
   border: none;
   border-radius: 50px;
-  background-color: #cc5de8;
-  color: #f8f0fc;
+  background-color: #fab005;
+  color: #fff9db;
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.07);
 }
 
@@ -106,14 +106,14 @@
 }
 
 .edit-thread--btn:hover {
-  background-color: #be4bdb;
-  color: #f8f0fc;
+  background-color: #f59f00;
+  color: #fff9db;
   font-weight: bold;
 }
 
 .edit-thread--btn:active {
-  --bs-btn-active-bg: #ae3ec9;
-  color: #f3d9fa;
+  --bs-btn-active-bg: #f08c00;
+  color: #fff9db;
   font-weight: bold;
 }
 
