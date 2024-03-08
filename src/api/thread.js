@@ -80,3 +80,14 @@ export const createCommentThread = (comment, user, id) => {
     },
   });
 };
+
+export const toggleLikeThread = (user, id) => {
+  console.log("Inside toggleLikeThread - user:", user);
+  return axios({
+    url: apiUrl + "/threads/" + id + "/like",
+    method: "POST",
+    headers: {
+      Authorization: `Token token=${user.token}`,
+    },
+  });
+};
