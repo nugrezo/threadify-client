@@ -2,7 +2,6 @@ import apiUrl from "../apiConfig";
 import axios from "axios";
 
 export const createThread = (thread, user) => {
-  console.log("Inside createThread - user:", user);
   return axios({
     method: "POST",
     url: apiUrl + "/threads",
@@ -18,7 +17,6 @@ export const createThread = (thread, user) => {
 };
 
 export const getAllThreads = (user) => {
-  console.log("Inside getAllThreads - user:", user);
   return axios({
     url: apiUrl + "/threads",
     method: "GET",
@@ -39,8 +37,6 @@ export const deleteThread = (user, id) => {
 };
 
 export const updateThread = (thread, user, id) => {
-  console.log(`inside the updateThread id is ${id}`);
-
   return axios({
     url: apiUrl + "/threads/" + id,
     method: "PATCH",
@@ -66,7 +62,6 @@ export const showThread = (user, id) => {
 };
 
 export const createCommentThread = (comment, user, id) => {
-  console.log("Inside createCommentThread - user:", user);
   return axios({
     url: apiUrl + "/threads/" + id + "/comment",
     method: "POST",
@@ -82,7 +77,6 @@ export const createCommentThread = (comment, user, id) => {
 };
 
 export const toggleLikeThread = (user, id) => {
-  console.log("Inside toggleLikeThread - user:", user);
   return axios({
     url: apiUrl + "/threads/" + id + "/like",
     method: "POST",

@@ -38,8 +38,6 @@ const CreateThread = ({ msgAlert, user }) => {
         variant: "success",
       });
     } catch (error) {
-      console.error("Thread Creation Failed:", error);
-
       msgAlert({
         heading: "Create Thread Failed with error: " + error.message,
         message: messages.signUpFailure,

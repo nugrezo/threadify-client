@@ -21,10 +21,7 @@ const IndexThreads = ({ msgAlert, user }) => {
     try {
       const response = await getAllThreads(user);
       setThreads(response.data.threads);
-      console.log(`response.data is ${JSON.stringify(response.data)}`);
-    } catch (error) {
-      console.error("Failed to fetch threads:", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -34,8 +31,6 @@ const IndexThreads = ({ msgAlert, user }) => {
   const handleComment = (threadId, user) => {
     setShowModal(true);
     setSelectedThreadId(threadId);
-    console.log("User object before API call:", user);
-    console.log(`Chosen thread ID: ${threadId}`);
   };
 
   return (
@@ -45,8 +40,8 @@ const IndexThreads = ({ msgAlert, user }) => {
         <div className="index-threads--items col-sm-10 col-md-8 mx-auto mt-5">
           {threads.map((thread) => (
             <div className="index-threads--items-all" key={thread.id}>
-              <div className="index-thread--item">
-                <div className="profilephoto-container">
+              <div key={thread.item} className="index-thread--item">
+                <div key={thread.container} className="profilephoto-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -116,7 +111,10 @@ const IndexThreads = ({ msgAlert, user }) => {
                 {thread.comments.map((comment) => (
                   <div key={comment._id} className="separator">
                     <div key={comment._id} className="comment-item">
-                      <div className="profilephoto-container">
+                      <div
+                        key={comment.container}
+                        className="profilephoto-container"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

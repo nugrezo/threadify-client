@@ -28,8 +28,6 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         variant: "success",
       });
     } catch (error) {
-      console.error("User posts could not be retrieved:", error);
-
       msgAlert({
         heading: "Create Thread Failed with error: " + error.message,
         message: messages.displayUserThreadsFailure,
@@ -67,8 +65,6 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         variant: "success",
       });
     } catch (error) {
-      console.error("Thread update failed:", error);
-
       msgAlert({
         heading: "Update Thread Failed with error: " + error.message,
         message: messages.updateThreadFailure,
@@ -96,8 +92,6 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         variant: "success",
       });
     } catch (error) {
-      console.error("Thread deletion failed:", error);
-
       msgAlert({
         heading: "Delete Thread Failed with error: " + error.message,
         message: messages.deleteThreadFailure,
@@ -114,7 +108,10 @@ const ShowUserThreads = ({ msgAlert, user }) => {
           {userThreads.map((userThread) => (
             <div className="user-threads--items-all" key={userThread.id}>
               <div className="user-thread--item">
-                <div className="profilephoto-container">
+                <div
+                  key={userThread.container}
+                  className="profilephoto-container"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

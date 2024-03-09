@@ -6,9 +6,6 @@ import "./Icon.css";
 const Icon = ({ onSetAllIndex }) => {
   const navigate = useNavigate();
 
-  //   const [home, setHome] = useState(false);
-  //   const [allPosts, setAllPosts] = useState(false);
-
   const handleNavigateThreads = () => {
     navigate("/post");
   };
@@ -16,10 +13,6 @@ const Icon = ({ onSetAllIndex }) => {
   const handleClick = () => {
     try {
       navigate("/threads");
-      // Place your logic here to handle both navigation and Axios call
-      console.log("Button clicked. Implement your logic here.");
-      // Example: Trigger the Axios call here
-      // Example: Navigate to the home page here
     } catch (error) {
       console.error("Failed to fetch threads:", error);
     }

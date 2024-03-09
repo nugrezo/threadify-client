@@ -51,8 +51,6 @@ const CreateCommentThread = ({
 
       navigate("/threads");
     } catch (error) {
-      console.error("Thread Creation Failed:", error);
-
       msgAlert({
         heading: "Create Comment to Thread Failed with error: " + error.message,
         message: messages.createCommentFailure,
