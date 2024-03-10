@@ -1,0 +1,20 @@
+.threadify-container {
+  height: 600px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vector-shape {
+  fill: none;
+  stroke: #faa2c1;
+  stroke-width: 10;
+}
+
+.threadify-text {
+  font-size: 2em;
+  stroke: #ae3ec9;
+  stroke-width: 2;
+  fill: #faa2c1;
+}

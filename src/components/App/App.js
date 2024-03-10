@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // import AuthenticatedRoute from "../AuthenticatedRoute/AuthenticatedRoute";
 import AutoDismissAlert from "../AutoDismissAlert/AutoDismissAlert";
@@ -14,6 +14,8 @@ import Icon from "../ThreadComponents/Icon/Icon";
 import ShowUserThreads from "../ThreadComponents/ShowUserThreads/ShowUserThreads";
 import "./App.css";
 import Footer from "../ThreadComponents/Footer/Footer";
+
+import Threadify from "../VectorShape/Threadify";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -39,7 +41,7 @@ function App() {
         ))}
         <main className="container">
           <Routes>
-            <Route path="/" element={<Navigate to="/" />} />
+            <Route path="/" element={<Threadify to="/" />} />
             <Route
               path="/sign-up"
               element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
