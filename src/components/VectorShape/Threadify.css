@@ -1,4 +1,5 @@
 .threadify-container {
+  width: 100%;
   height: 600px;
   overflow: hidden;
   display: flex;
