@@ -17,7 +17,39 @@ const Threadify = () => {
           textAnchor="middle"
           className="threadify-text"
         >
-          Threadify
+          Connect
+        </text>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 200 200"
+        className="vector-shape"
+      >
+        <path d="M100,100 m0,-50 a50,50 0 1,1 0,100 a50,50 0 1,1 0,-100" />
+        <text
+          x="50%"
+          y="50%"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          className="threadify-text"
+        >
+          with
+        </text>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 200 200"
+        className="vector-shape"
+      >
+        <path d="M100,100 m0,-50 a50,50 0 1,1 0,100 a50,50 0 1,1 0,-100" />
+        <text
+          x="50%"
+          y="50%"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          className="threadify-text"
+        >
+          People
         </text>
       </svg>
     </div>
