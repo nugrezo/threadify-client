@@ -11,6 +11,7 @@ import Icon from "../Icon/Icon";
 const ShowUserThreads = ({ msgAlert, user }) => {
   const [userThreads, setUserThreads] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [threadId, setThreadId] = useState("");
   const [updatedText, setUpdatedText] = useState("");
 
@@ -46,6 +47,11 @@ const ShowUserThreads = ({ msgAlert, user }) => {
     setUpdatedText(
       userThreads.find((thread) => thread._id === selectedThreadId)?.text || ""
     );
+  };
+
+  const handleDelete = (selectedThreadId) => {
+    setShowDeleteModal(true);
+    setThreadId(selectedThreadId);
   };
 
   const onUpdateThread = async () => {
@@ -145,7 +151,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                     Edit
                   </Button>
                   <Button
-                    onClick={() => onDeleteUserThread(userThread._id)}
+                    onClick={() => handleDelete(userThread._id)}
                     className="delete-thread--btn"
                     variant="primary"
                     type="button"
@@ -194,6 +200,48 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                                 type="button"
                                 className="update-thread-cancel-btn"
                                 onClick={() => setShowModal(false)}
+                              >
+                                Cancel
+                              </Button>
+                            </div>
+                          </Form>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {showDeleteModal && (
+                    <div className="modal" style={{ display: "block" }}>
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5 className="modal-title">
+                              Are you sure you want to delete the post!
+                            </h5>
+                            <Button
+                              type="button"
+                              className="btn-close"
+                              aria-label="Close"
+                              onClick={() => setShowDeleteModal(false)}
+                            ></Button>
+                          </div>
+                          <Form
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              onDeleteUserThread(userThread._id);
+                            }}
+                          >
+                            <Form.Group className="form-thread"></Form.Group>
+                            <div className="modal-footer">
+                              <Button
+                                type="submit"
+                                className="update-thread-add-btn"
+                              >
+                                Delete
+                              </Button>
+                              <Button
+                                type="button"
+                                className="update-thread-cancel-btn"
+                                onClick={() => setShowDeleteModal(false)}
                               >
                                 Cancel
                               </Button>
