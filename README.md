@@ -16,7 +16,7 @@
    - [Run the Application](#3-run-the-application)
    - [Access the Application](#4-access-the-application)
 
-3. [Deployement](#3---deployement-instructions)
+3. [Deployment](#3---deployement-instructions)
 
 4. [Usage](#4---usage)
 
