@@ -27,9 +27,10 @@
 5. [Technologies Used](#5---technologies-used)
 
    - [React](#1-react)
-   - [JSX](#2-jsx)
+   - [Axios](#2-axios)
    - [CSS](#3-css)
-   - [JavaScript](#4-javascript)
+   - [BootStrap](#4-bootstrap)
+   - [JavaScript](#5-javascript)
 
 6. [Features](#6---features)
 
