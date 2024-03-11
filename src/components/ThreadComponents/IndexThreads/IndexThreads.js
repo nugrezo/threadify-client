@@ -17,7 +17,7 @@ const IndexThreads = ({ msgAlert, user }) => {
     user,
   });
 
-  const formatDate = (createdAt, updatedAt) => {
+  const formatDate = (createdAt) => {
     const date = new Date(createdAt);
     const formattedDate = `${
       date.getMonth() + 1
@@ -29,6 +29,7 @@ const IndexThreads = ({ msgAlert, user }) => {
     try {
       const response = await getAllThreads(user);
       setThreads(response.data.threads);
+      console.log(JSON.stringify(response.data.threads));
     } catch (error) {}
   };
 
