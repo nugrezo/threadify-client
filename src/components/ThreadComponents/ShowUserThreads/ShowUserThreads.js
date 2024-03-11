@@ -112,12 +112,9 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       <div className="user-threads">
         <div className="user-threads--items col-sm-10 col-md-8 mx-auto mt-5">
           {userThreads.map((userThread) => (
-            <div className="user-threads--items-all" key={userThread.id}>
+            <div className="user-threads--items-all" key={userThread._id}>
               <div className="user-thread--item">
-                <div
-                  key={userThread.container}
-                  className="profilephoto-container"
-                >
+                <div className="profilephoto-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

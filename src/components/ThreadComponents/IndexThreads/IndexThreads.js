@@ -29,7 +29,6 @@ const IndexThreads = ({ msgAlert, user }) => {
     try {
       const response = await getAllThreads(user);
       setThreads(response.data.threads);
-      console.log(JSON.stringify(response.data.threads));
     } catch (error) {}
   };
 
@@ -48,9 +47,9 @@ const IndexThreads = ({ msgAlert, user }) => {
       <div className="index-threads">
         <div className="index-threads--items col-sm-10 col-md-8 mx-auto mt-5">
           {threads.map((thread) => (
-            <div className="index-threads--items-all" key={thread.id}>
-              <div key={thread.item} className="index-thread--item">
-                <div key={thread.container} className="profilephoto-container">
+            <div className="index-threads--items-all" key={thread._id}>
+              <div className="index-thread--item">
+                <div className="profilephoto-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -122,11 +121,8 @@ const IndexThreads = ({ msgAlert, user }) => {
               <div className="comments-container">
                 {thread.comments.map((comment) => (
                   <div key={comment._id} className="separator">
-                    <div key={comment._id} className="comment-item">
-                      <div
-                        key={comment.container}
-                        className="profilephoto-container"
-                      >
+                    <div className="comment-item">
+                      <div className="profilephoto-container">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
