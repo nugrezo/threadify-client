@@ -17,6 +17,14 @@ const IndexThreads = ({ msgAlert, user }) => {
     user,
   });
 
+  const formatDate = (createdAt, updatedAt) => {
+    const date = new Date(createdAt);
+    const formattedDate = `${
+      date.getMonth() + 1
+    }/${date.getDate()}/${date.getFullYear()}`;
+    return formattedDate;
+  };
+
   const onSetAllIndex = async () => {
     try {
       const response = await getAllThreads(user);
@@ -63,6 +71,9 @@ const IndexThreads = ({ msgAlert, user }) => {
                   </p>
                   <p className="index-threads--items-info-text">
                     {thread.text}
+                  </p>
+                  <p className="postDate">
+                    Posted on: {formatDate(thread.createdAt)}
                   </p>
                 </div>
                 <div className="react__container">
@@ -136,6 +147,9 @@ const IndexThreads = ({ msgAlert, user }) => {
                           <span className="no-style">replied</span>
                         </p>
                         <p className="comment-text">{comment.text}</p>
+                        <p className="comment-date">
+                          Commented on: {formatDate(thread.updatedAt)}
+                        </p>
                       </div>
                     </div>
                   </div>

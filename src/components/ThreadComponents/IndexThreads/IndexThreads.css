@@ -224,3 +224,9 @@
   background-clip: padding-box;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.postDate, .comment-date{
+  color:#868e96;
+  font-size: 12px;
+  margin-left: 16px;
+}
