@@ -181,7 +181,7 @@ Cascading Style Sheets (CSS) is utilized to style and design the application, en
 
 4. **BootStrap**
 
-Bootstrap is used for responsive designed for buttons and forms
+Bootstrap is used for responsive designed for buttons and forms and alert user messages.
 
 5. **JavaScript**
 
@@ -370,7 +370,7 @@ Clone the Repository:
 
 Clone the forked repository to your local machine using the following command:
 
-git clone https://github.com/nugrezo/Threadify.git
+git clone https://github.com/nugrezo/threadify-client
 
 Create a Branch:
 
