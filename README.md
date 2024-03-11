@@ -4,7 +4,7 @@
 
    - [Project Name](#project-name)
    - [Description](#description)
-   - [Why Forum-System](#why-forum-system)
+   - [Why Threadify](#why-Threadify)
    - [Key Aims](#key-aims)
    - [Inspiration from Twitter](#inspiration-from-twitter)
    - [Beyond Expectations](#beyond-expectations)
@@ -20,7 +20,6 @@
 
 4. [Usage](#4---usage)
 
-   -
    - [Navigate through Threads](#1-navigate-through-threads)
    - [Contribute to Discussions](#2-contribute-to-discussions)
    - [Interact with Posts](#3-interact-with-posts)
@@ -102,7 +101,7 @@ Taking inspiration from the concise and real-time nature of Threads, the Threads
 
 While the Threadify caters to conventional forum functionalities, it also introduces innovative features that transcend expectations. From intuitive user interfaces to novel ways of content discovery, the application strives to redefine the forum experience.
 
-Embrace the Threadify as not just a digital meeting place but a dynamic space where ideas flourish, connections form, and users actively shape the narrative. Join the conversation and explore the limitless possibilities within the Forum-System.
+Embrace the Threadify as not just a digital meeting place but a dynamic space where ideas flourish, connections form, and users actively shape the narrative. Join the conversation and explore the limitless possibilities within the Threadify.
 
 ## 2 - Installation Instructions
 
@@ -110,7 +109,7 @@ To set up the Threadify front-end application developed with React, follow these
 
 1. **Clone the Repository**
 
-git clone https://github.com/nugrezo/forum-system-client.git
+git clone https://github.com/nugrezo/Threadify-client.git
 
 cd threadify-client
 
@@ -124,9 +123,9 @@ npm start
 
 4. **Access the Application**
 
-Open your browser and navigate to http://localhost:3000 to view the Forum-System.
+Open your browser and navigate to http://localhost:3000 to view the Threadify.
 
-That's it! You've successfully installed and launched the Forum-System front-end application. Dive into the world of dynamic discussions and collaborative interactions.
+That's it! You've successfully installed and launched the Threadify front-end application. Dive into the world of dynamic discussions and collaborative interactions.
 
 ## 3 - Deployment
 
@@ -152,7 +151,7 @@ Engage actively by creating your own threads. Share your thoughts, experiences, 
 
 3. **Interact with Posts**
 
-Like and comment on posts to express appreciation or contribute to ongoing conversations. The Forum-System encourages interaction, fostering a vibrant and collaborative environment.
+Like and comment on posts to express appreciation or contribute to ongoing conversations. The Threadify encourages interaction, fostering a vibrant and collaborative environment.
 
 ## 5 - Technologies Used
 
@@ -160,17 +159,33 @@ Like and comment on posts to express appreciation or contribute to ongoing conve
 
 Leveraging the power of React, the application achieves a responsive and dynamic user interface. React's component-based architecture facilitates modular development and seamless updates.
 
-2. **JSX**
+2. **Axios**
 
-JSX, a syntax extension for JavaScript, is employed to enhance the readability of the codebase. It allows the blending of HTML-like tags within JavaScript, streamlining the creation of interactive user interfaces.
+Axios is used to make the HTTP client request for the below api end points.
+
+- POST/sign-up - to sign-up new user.
+- POST/sign-in - to sign-in user.
+- DELETE/sign-out - to sign-out user.
+- PATCH/change-password - to change password.
+- POST/threads - to create a thread.
+- GET/threads - to show all threads created by all the users.
+- DELETE/threads/id - to delete the thread by the owner of the thread.
+- PATCH/threads/id - to update the thread by the owner of the thread.
+- GET/threads/ - to display the thread by the owner of the thread.
+- POST/threads/id/comment - to create a comment to a specific thread by the authenticated user.
+- POST/threads/id/like - to like the specific thread by the authenticated user.
 
 3. **CSS**
 
 Cascading Style Sheets (CSS) is utilized to style and design the application, ensuring a visually appealing and cohesive presentation. Custom styling enhances the user experience and aligns with modern design principles.
 
-4. **JavaScript**
+4. **BootStrap**
 
-JavaScript is employed for adding interactivity and functionality to the application. From handling user interactions to managing asynchronous requests, JavaScript enhances the overall responsiveness of the Forum-System.
+Bootstrap is used for responsive designed for buttons and forms
+
+5. **JavaScript**
+
+JavaScript is employed for adding interactivity and functionality to the application. From handling user interactions to managing asynchronous requests, JavaScript enhances the overall responsiveness of the Threadify.
 
 ## 6 - Features
 
@@ -237,7 +252,7 @@ make it easier to make changes at the component level.
 
 1. **Secure Account Creation and Authentication**
 
-Users can securely create accounts using a unique username, email, and password. The Forum-System employs robust authentication mechanisms to ensure the privacy and security of user information.
+Users can securely create accounts using a unique username, email, and password. The Threadify employs robust authentication mechanisms to ensure the privacy and security of user information.
 
 2. **Effortless Account Login and Logout**
 
@@ -249,7 +264,7 @@ Users are empowered to create threads, fostering a diverse range of discussions.
 
 4. **Personalized Thread Management**
 
-The Forum-System offers users the ability to create, comment on, and like threads. Each user can manage and interact with the threads they've created, enhancing a sense of ownership and contribution within the community.
+The Threadify offers users the ability to create, comment on, and like threads. Each user can manage and interact with the threads they've created, enhancing a sense of ownership and contribution within the community.
 
 5. **Thread Exploration and Interaction**
 
@@ -259,13 +274,13 @@ Users can explore and interact with threads created by others. The platform prom
 
 Users can securely sign out of their accounts to ensure the protection of their personal information. The sign-out feature guarantees a complete and secure session closure.
 
-These features collectively provide users with a comprehensive and secure experience within the Forum-System. From account creation to active participation in discussions, the platform prioritizes user privacy, engagement, and seamless interaction.
+These features collectively provide users with a comprehensive and secure experience within the Threadify. From account creation to active participation in discussions, the platform prioritizes user privacy, engagement, and seamless interaction.
 
 ## 7 - Upcoming features
 
 1. **Account Management**
 
-Users will have the capability to manage their accounts, allowing them to modify email addresses and update passwords. This feature enhances user control and customization within the Forum-System.
+Users will have the capability to manage their accounts, allowing them to modify email addresses and update passwords. This feature enhances user control and customization within the Threadify.
 
 2. **Contributions Count and Thread History**
 
@@ -279,17 +294,17 @@ Introducing a tiered user level system, including levels such as Blue, Gold, Sil
 
 Users at different levels will receive exclusive benefits, though the specific details of these advantages are yet to be decided. This upcoming feature aims to enhance user experience and engagement, providing incentives for active participation.
 
-As these features are implemented, the Forum-System will evolve into a more dynamic and rewarding platform, encouraging sustained user interaction and fostering a strong sense of community within each level.
+As these features are implemented, the Threadify will evolve into a more dynamic and rewarding platform, encouraging sustained user interaction and fostering a strong sense of community within each level.
 
 5. **Enhanced User Control**
 
-In addition to the upcoming features, users will soon gain the ability to manage their content more effectively with the introduction of a post deletion feature. This empowers users with greater control over their contributions, allowing them to curate and refine their presence within the forum. The deletion feature aligns with the Forum-System's commitment to providing users with a personalized and customizable experience, ensuring that their engagement with the platform remains in their hands.
+In addition to the upcoming features, users will soon gain the ability to manage their content more effectively with the introduction of a post deletion feature. This empowers users with greater control over their contributions, allowing them to curate and refine their presence within the forum. The deletion feature aligns with the Threadify's commitment to providing users with a personalized and customizable experience, ensuring that their engagement with the platform remains in their hands.
 
 6. **Upcoming Features: CSS Enhancements**
 
 **Custom Styling Options:**
 
-- Explore upcoming features that offer users the ability to apply custom styling to their threads and comments. Tailor the appearance of your contributions to express your unique style within the Forum-System.
+- Explore upcoming features that offer users the ability to apply custom styling to their threads and comments. Tailor the appearance of your contributions to express your unique style within the Threadify.
 
 **Theme Customization:**
 
@@ -297,13 +312,13 @@ In addition to the upcoming features, users will soon gain the ability to manage
 
 **Responsive Design Improvements:**
 
-- Stay tuned for CSS enhancements aimed at refining the responsive design of the Forum-System. The upcoming improvements will ensure a consistent and user-friendly experience across various devices.
+- Stay tuned for CSS enhancements aimed at refining the responsive design of the Threadify. The upcoming improvements will ensure a consistent and user-friendly experience across various devices.
 
 **User Profile Customization:**
 
 - Users will soon be able to enhance the visual appeal of their profiles by customizing the appearance through CSS. Showcase your personality and preferences within the community with unique profile styles.
 
-As we continually work on enhancing the CSS features of the Forum-System, we are committed to providing users with a visually appealing and customizable platform. Keep an eye out for updates as we strive to create an even more engaging and aesthetically pleasing forum experience.
+As we continually work on enhancing the CSS features of the Threadify, we are committed to providing users with a visually appealing and customizable platform. Keep an eye out for updates as we strive to create an even more engaging and aesthetically pleasing forum experience.
 
 ## 8 - Screenshots or GIFs
 
@@ -345,17 +360,17 @@ As we continually work on enhancing the CSS features of the Forum-System, we are
 
 ## 9 - Contributing Guidelines
 
-I appreciate your interest in contributing to the Forum-System project. Your contributions play a vital role in enhancing the overall experience for our users. Before you get started, please take a moment to review the following guidelines:
+I appreciate your interest in contributing to the Threadify project. Your contributions play a vital role in enhancing the overall experience for our users. Before you get started, please take a moment to review the following guidelines:
 
 Fork the Repository:
 
-Fork the Forum-System repository to your GitHub account.
+Fork the Threadify repository to your GitHub account.
 
 Clone the Repository:
 
 Clone the forked repository to your local machine using the following command:
 
-git clone https://github.com/nugrezo/forum-system.git
+git clone https://github.com/nugrezo/Threadify.git
 
 Create a Branch:
 
@@ -389,19 +404,19 @@ Merge Pull Request:
 
 Once your pull request is approved, it will be merged into the main repository.
 
-Thank you for your contributions! Your efforts contribute to the growth and improvement of the Forum-System project.
+Thank you for your contributions! Your efforts contribute to the growth and improvement of the Threadify project.
 
 ## 10 - License
 
-The Forum-System project is licensed under the forum-system_joz]. This license grants users the freedom to use, modify, and distribute the software within the terms specified in the license document.
+The Threadify project is licensed under the Threadify_joz]. This license grants users the freedom to use, modify, and distribute the software within the terms specified in the license document.
 
 ## 11 - Acknowledgments
 
-I would like to express my gratitude to individuals and organizations that have contributed directly or indirectly to the development and success of the Forum-System project. Their support and inspiration have played a crucial role in shaping the project into what it is today.
+I would like to express my gratitude to individuals and organizations that have contributed directly or indirectly to the development and success of the Threadify project. Their support and inspiration have played a crucial role in shaping the project into what it is today.
 
 Special thanks to:
 
 **Sam Williams**: Inspired me throughout the project and gave me an ultimate guide to build front-end and back-end guides.
 
-Your commitment and contributions are highly appreciated, and I extend my sincere thanks to everyone who has been part of this journey. The collaborative spirit of the community has made the Forum-System project possible and continues to drive its growth and success.
+Your commitment and contributions are highly appreciated, and I extend my sincere thanks to everyone who has been part of this journey. The collaborative spirit of the community has made the Threadify project possible and continues to drive its growth and success.
 .
