@@ -107,7 +107,11 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   };
 
   return (
-    <div className={`modal-background ${showModal ? "show" : ""}`}>
+    <div
+      className={`modal-background ${
+        showModal || showDeleteModal ? "show" : ""
+      }`}
+    >
       <Icon />
       <div className="user-threads">
         <div className="user-threads--items col-sm-10 col-md-8 mx-auto mt-5">
