@@ -164,17 +164,15 @@ Leveraging the power of React, the application achieves a responsive and dynamic
 
 Axios is used to make the HTTP client request for the below api end points.
 
-- POST/sign-up - to sign-up new user.
-- POST/sign-in - to sign-in user.
-- DELETE/sign-out - to sign-out user.
-- PATCH/change-password - to change password.
-- POST/threads - to create a thread.
-- GET/threads - to show all threads created by all the users.
-- DELETE/threads/id - to delete the thread by the owner of the thread.
-- PATCH/threads/id - to update the thread by the owner of the thread.
-- GET/threads/ - to display the thread by the owner of the thread.
-- POST/threads/id/comment - to create a comment to a specific thread by the authenticated user.
-- POST/threads/id/like - to like the specific thread by the authenticated user.
+| Verb   | URI Pattern           | #Action           |
+| ------ | --------------------- | ----------------- |
+| POST   | `/threads`            | `thread#crate`    |
+| GET    | `/threads`            | `thread#showall`  |
+| DELETE | `/threads/id/`        | `threads#delete`  |
+| PATCH  | `/threads/id/`        | `threads#update`  |
+| GET    | `/threads/id/`        | `threads#show  `  |
+| POST   | `/threads/id/comment` | `threads#comment` |
+| POST   | `/threads/id/like`    | `threads#like  `  |
 
 3. **CSS**
 
