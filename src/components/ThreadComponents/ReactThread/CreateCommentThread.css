@@ -42,7 +42,7 @@
 
 .comments-container {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
   color: #868e96;
 }
 .comment-item {
