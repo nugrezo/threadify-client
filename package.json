@@ -1,7 +1,7 @@
 {
   "name": "threadify-client",
   "version": "1.0.0",
-  "private": false,
+  "private": true,
   "homepage": "https://github.com/nugrezo/threadify-client/",
   "description": "react",
   "main": "index.js",
