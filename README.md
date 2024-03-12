@@ -323,39 +323,39 @@ As we continually work on enhancing the CSS features of the Threadify, we are co
 
 **Login account View screenshot**
 
-![Login account screenshot](public/media/Landing-Page.png)
+![Login account screenshot](src/media/Landing-Page.png)
 
 **Create account View screenshot**
 
-![create account screenshot](public/media/Sign-Up.png)
+![create account screenshot](src/media/Sign-Up.png)
 
 **Sign-In account View screenshot**
 
-![create account screenshot](public/media/Sign-In.png)
+![create account screenshot](src/media/Sign-In.png)
 
 **Create Thread View screenshot**
 
-![create thread screenshot](public/media/Create-Thread.png)
+![create thread screenshot](src/media/Create-Thread.png)
 
 **Comment Thread View screenshot**
 
-![comment thread screenshot](public/media/Add-Comment.png)
+![comment thread screenshot](src/media/Add-Comment.png)
 
 **Replied Thread View screenshot**
 
-![index threads view screenshot](public/media/Index-Threads.png)
+![index threads view screenshot](src/media/Index-Threads.png)
 
 **User Thread View screenshot**
 
-![user thread view screenshot](public/media/User-Thread.png)
+![user thread view screenshot](src/media/User-Thread.png)
 
 **Delete Thread View screenshot**
 
-![delete thread view screenshot](public/media/Delete-Thread.png)
+![delete thread view screenshot](src/media/Delete-Thread.png)
 
 **Edit Thread View screenshot**
 
-![edit thread view screenshot](public/media/Edit-Thread.png)
+![edit thread view screenshot](src/media/Edit-Thread.png)
 
 ## 9 - Contributing Guidelines
 
