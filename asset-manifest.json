@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/nugrezo/threadify-client/static/css/main.a793e4f3.css",
-    "main.js": "/nugrezo/threadify-client/static/js/main.f70059d9.js",
+    "main.js": "/nugrezo/threadify-client/static/js/main.27742ee9.js",
     "index.html": "/nugrezo/threadify-client/index.html",
     "main.a793e4f3.css.map": "/nugrezo/threadify-client/static/css/main.a793e4f3.css.map",
-    "main.f70059d9.js.map": "/nugrezo/threadify-client/static/js/main.f70059d9.js.map"
+    "main.27742ee9.js.map": "/nugrezo/threadify-client/static/js/main.27742ee9.js.map"
   },
   "entrypoints": [
     "static/css/main.a793e4f3.css",
-    "static/js/main.f70059d9.js"
+    "static/js/main.27742ee9.js"
   ]
 }
