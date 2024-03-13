@@ -91,6 +91,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         (thread) => thread._id !== threadId
       );
       setUserThreads(updatedThreads);
+      setShowDeleteModal(false);
 
       msgAlert({
         heading: "DELETE THREAD SUCCESS",
