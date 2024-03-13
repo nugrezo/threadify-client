@@ -1,6 +1,6 @@
 let apiUrl;
 const apiUrls = {
-  production: "https://threadify-server1.onrender.com",
+  production: "https://threadify-server-last.onrender.com",
   development: "http://localhost:4741",
 };
 
