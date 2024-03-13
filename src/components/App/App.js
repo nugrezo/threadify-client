@@ -39,52 +39,50 @@ function App() {
             message={msgAlert.message}
           />
         ))}
-        <main className="container">
-          <HashRouter>
-            <Routes>
-              <Route path="/" element={<Threadify to="/" />} />
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<Threadify to="/" />} />
+            <Route
+              path="/sign-up"
+              element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
+            />
+            <Route
+              path="/sign-in"
+              element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
+            />
+            {user && (
               <Route
-                path="/sign-up"
-                element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
+                path="/sign-out"
+                element={
+                  <SignOut
+                    msgAlert={msgAlert}
+                    clearUser={clearUser}
+                    user={user}
+                  />
+                }
               />
+            )}
+            {user && (
               <Route
-                path="/sign-in"
-                element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
+                path="/change-password"
+                element={<ChangePassword msgAlert={msgAlert} user={null} />}
               />
-              {user && (
-                <Route
-                  path="/sign-out"
-                  element={
-                    <SignOut
-                      msgAlert={msgAlert}
-                      clearUser={clearUser}
-                      user={user}
-                    />
-                  }
-                />
-              )}
-              {user && (
-                <Route
-                  path="/change-password"
-                  element={<ChangePassword msgAlert={msgAlert} user={null} />}
-                />
-              )}
-              <Route path="/home" element={<Icon />} />
-              <Route
-                path="/threads"
-                element={<IndexThreads msgAlert={msgAlert} user={user} />}
-              />
-              <Route
-                path="/post"
-                element={<CreateThread msgAlert={msgAlert} user={user} />}
-              />
-              <Route
-                path="/userthreads"
-                element={<ShowUserThreads msgAlert={msgAlert} user={user} />}
-              />
-            </Routes>
-          </HashRouter>
-        </main>
+            )}
+            <Route path="/home" element={<Icon />} />
+            <Route
+              path="/threads"
+              element={<IndexThreads msgAlert={msgAlert} user={user} />}
+            />
+            <Route
+              path="/post"
+              element={<CreateThread msgAlert={msgAlert} user={user} />}
+            />
+            <Route
+              path="/userthreads"
+              element={<ShowUserThreads msgAlert={msgAlert} user={user} />}
+            />
+          </Routes>
+        </HashRouter>
         <Footer />
       </div>
     </Fragment>
