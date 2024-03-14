@@ -82,7 +82,7 @@ const SignIn = ({ msgAlert, setUser }) => {
             Sign In
           </Button>
           <div className="navigate-sign-in">
-            <p className="have-account">Have an account?</p>
+            <p className="have-account">Do not have an account?</p>
             <Nav.Link className="navigate--sign-in" href="#sign-up">
               Sign Up
             </Nav.Link>
