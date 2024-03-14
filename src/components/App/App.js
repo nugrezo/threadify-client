@@ -68,7 +68,7 @@ function App() {
                 element={<ChangePassword msgAlert={msgAlert} user={null} />}
               />
             )}
-            <Route path="/home" element={<Icon user={user} />} />
+            <Route path="/home" element={<Icon />} />
             <Route
               path="/threads"
               element={<IndexThreads msgAlert={msgAlert} user={user} />}
