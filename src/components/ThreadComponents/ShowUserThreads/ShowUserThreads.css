@@ -97,6 +97,14 @@
   margin-top: 12px;
 }
 
+.userthread_loading {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .edit-thread--btn {
   padding: 8px;
   display: flex;

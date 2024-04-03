@@ -116,7 +116,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
     >
       <Icon />
       {loading ? (
-        <p className="emptythread-message">Loading...</p>
+        <p className="userthread_loading">Loading...</p>
       ) : (
         <div className="user-threads">
           <div className="user-threads--items col-sm-10 col-md-8 mx-auto mt-5">
