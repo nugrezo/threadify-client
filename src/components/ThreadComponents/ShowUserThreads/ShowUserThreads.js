@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import { showThread, updateThread, deleteThread } from "../../../api/thread";
 import messages from "../../AutoDismissAlert/messages";
 import Icon from "../Icon/Icon";
+import DotsLoader from "../../DotsLoader/DotsLoader";
 
 const ShowUserThreads = ({ msgAlert, user }) => {
   const [userThreads, setUserThreads] = useState([]);
@@ -116,7 +117,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
     >
       <Icon />
       {loading ? (
-        <p className="userthread_loading">Loading...</p>
+        <DotsLoader />
       ) : (
         <div className="user-threads">
           <div className="user-threads--items col-sm-10 col-md-8 mx-auto mt-5">
