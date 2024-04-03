@@ -7,8 +7,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { signIn, signUp } from "../../../api/auth";
 import messages from "../../AutoDismissAlert/messages";
+import DotsLoader from "../../DotsLoader/DotsLoader";
 
 const SignUp = ({ msgAlert, setUser }) => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -26,6 +28,7 @@ const SignUp = ({ msgAlert, setUser }) => {
     event.preventDefault();
 
     try {
+      setLoading(true);
       await signUp(formData);
       const response = await signIn(formData);
       setUser(response.data.user);
@@ -98,8 +101,8 @@ const SignUp = ({ msgAlert, setUser }) => {
               onChange={handleChange}
             />
           </Form.Group>
-          <Button className="sign-up--btn" variant="primary" type="submit">
-            Sign Up
+          <Button className="sign-up--btn" type="submit">
+            {loading ? <DotsLoader /> : "Sign Up"}
           </Button>
           <div className="navigate-sign-in">
             <p className="have-account">Have an account?</p>

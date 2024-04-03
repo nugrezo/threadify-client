@@ -4,7 +4,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 // import AuthenticatedRoute from "../AuthenticatedRoute/AuthenticatedRoute";
 import AutoDismissAlert from "../AutoDismissAlert/AutoDismissAlert";
 import Header from "../Header/Header";
-import ChangePassword from "../ChangePassword/ChangePassword";
+import ChangePassword from "../AuthComponents/ChangePassword/ChangePassword";
 import SignUp from "../AuthComponents/SignUp/SignUp";
 import SignOut from "../AuthComponents/SignOut/SignOut";
 import SignIn from "../AuthComponents/SignIn/SignIn";

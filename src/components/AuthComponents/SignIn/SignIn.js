@@ -8,8 +8,10 @@ import messages from "../../AutoDismissAlert/messages";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import DotsLoader from "../../DotsLoader/DotsLoader";
 
 const SignIn = ({ msgAlert, setUser }) => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,7 +27,7 @@ const SignIn = ({ msgAlert, setUser }) => {
 
   const onSignIn = (event) => {
     event.preventDefault();
-
+    setLoading(false);
     signIn(formData)
       .then((res) => setUser(res.data.user))
       .then(() =>
@@ -78,8 +80,8 @@ const SignIn = ({ msgAlert, setUser }) => {
               onChange={handleChange}
             />
           </Form.Group>
-          <Button className="sign-in--btn" variant="primary" type="submit">
-            Sign In
+          <Button className="sign-in--btn" type="submit">
+            {loading ? <DotsLoader /> : "Sign In"}
           </Button>
           <div className="navigate-sign-in">
             <p className="have-account">Do not have an account?</p>
