@@ -44,7 +44,7 @@ const CreateCommentThread = ({
       setShowModal(false);
 
       msgAlert({
-        heading: "CREATE COMMENT SUCCESS",
+        // heading: "CREATE COMMENT SUCCESS",
         message: messages.createCommentSucess,
         variant: "success",
       });

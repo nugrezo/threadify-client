@@ -34,7 +34,7 @@ const SignUp = ({ msgAlert, setUser }) => {
         message: messages.signUpSuccess,
         variant: "success",
       });
-      navigate("/home");
+      navigate("/threads");
     } catch (error) {
       setFormData({
         email: "",

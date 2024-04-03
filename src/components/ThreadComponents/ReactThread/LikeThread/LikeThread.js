@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { toggleLikeThread } from "../../../../api/thread";
 import "./LikeThread.css";
+import messages from "../../../AutoDismissAlert/messages";
 
 const LikeThread = ({ threadId, user, thread, setThreads, msgAlert }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -32,14 +33,14 @@ const LikeThread = ({ threadId, user, thread, setThreads, msgAlert }) => {
 
       if (userLiked) {
         msgAlert({
-          heading: "LIKE THREAD SUCCESS",
-          message: "Thread liked successfully!",
+          // heading: "LIKE THREAD SUCCESS",
+          message: messages.likeThreadSuccess,
           variant: "success",
         });
       } else {
         msgAlert({
-          heading: "UNLIKE THREAD SUCCESS",
-          message: "Thread unliked successfully!",
+          // heading: "UNLIKE THREAD SUCCESS",
+          message: messages.unlikeThreadSuccess,
           variant: "danger",
         });
       }

@@ -33,7 +33,7 @@ const CreateThread = ({ msgAlert, user }) => {
         text: "",
       });
       msgAlert({
-        heading: "CREATE SUCCESS",
+        heading: "Created successfully",
         message: messages.createThreadSucess,
         variant: "success",
       });

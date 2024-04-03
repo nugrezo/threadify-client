@@ -35,7 +35,7 @@ const SignIn = ({ msgAlert, setUser }) => {
           variant: "success",
         })
       )
-      .then(() => navigate("/home"))
+      .then(() => navigate("/threads"))
       .catch((error) => {
         setFormData({
           email: "",

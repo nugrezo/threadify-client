@@ -9,9 +9,13 @@ export default {
   changePasswordSuccess: "Password changed successfully!",
   changePasswordFailure:
     "Failed to change passwords. Check your old password and try again.",
-  createThreadSucess: "Thread created successfully",
+  createThreadSucess: "Click home page icon to wiew your thread.",
   createCommentSucess: "Comment is created successfully",
   createCommentFailure: "Comment is not created. Failure",
   displayUserThreadsSuccess: "Displaying all my threads.",
   displayUserThreadsFailure: "Can`t be displayed for the moment",
+  deleteThreadSuccess: "Thread is deleted sucessfully.",
+  updateThreadSuccess: "Thread is updated successfully.",
+  likeThreadSuccess: "You liked the thread!",
+  unlikeThreadSuccess: "You unliked the thread!",
 };

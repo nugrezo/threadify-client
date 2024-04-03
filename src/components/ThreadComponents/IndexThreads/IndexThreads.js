@@ -29,6 +29,9 @@ const IndexThreads = ({ msgAlert, user }) => {
     try {
       const response = await getAllThreads(user);
       setThreads(response.data.threads);
+      console.log(
+        `response.data.threads is ${JSON.stringify(response.data.threads)}`
+      );
     } catch (error) {}
   };
 

@@ -24,7 +24,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       setUserThreads(filteredThreadsBasedOnOwner);
 
       msgAlert({
-        heading: "DISPLAY MY THREADS SUCCESS",
+        // heading: "DISPLAYING MY THREADS",
         message: messages.displayUserThreadsSuccess,
         variant: "success",
       });
@@ -66,7 +66,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       setShowModal(false);
 
       msgAlert({
-        heading: "UPDATE THREAD SUCCESS",
+        // heading: "UPDATE THREAD SUCCESS",
         message: messages.updateThreadSuccess,
         variant: "success",
       });
@@ -94,7 +94,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       setShowDeleteModal(false);
 
       msgAlert({
-        heading: "DELETE THREAD SUCCESS",
+        // heading: "DELETE THREAD SUCCESS",
         message: messages.deleteThreadSuccess,
         variant: "success",
       });
@@ -116,147 +116,153 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       <Icon />
       <div className="user-threads">
         <div className="user-threads--items col-sm-10 col-md-8 mx-auto mt-5">
-          {userThreads.map((userThread) => (
-            <div className="user-threads--items-all" key={userThread._id}>
-              <div className="user-thread--item">
-                <div className="profilephoto-container">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="profilephoto-icon"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                    />
-                  </svg>
-                </div>
-                <div className="user-threads--items-info">
-                  <p className="user-threads--items-info-username">
-                    {userThread.username}
-                  </p>
-                  <p className="user-threads--items-info-text">
-                    {userThread.text}
-                  </p>
-                </div>
-                <div className="react__container">
-                  <Button
-                    onClick={() => handleUpdate(userThread._id)}
-                    className="edit-thread--btn"
-                    variant="primary"
-                    type="button"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => handleDelete(userThread._id)}
-                    className="delete-thread--btn"
-                    variant="primary"
-                    type="button"
-                  >
-                    Delete
-                  </Button>
+          {userThreads.length === 0 ? (
+            <p className="emptythread-message">
+              You do not have any thread yet! Create one :))
+            </p>
+          ) : (
+            userThreads.map((userThread) => (
+              <div className="user-threads--items-all" key={userThread._id}>
+                <div className="user-thread--item">
+                  <div className="profilephoto-container">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="profilephoto-icon"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="user-threads--items-info">
+                    <p className="user-threads--items-info-username">
+                      {userThread.username}
+                    </p>
+                    <p className="user-threads--items-info-text">
+                      {userThread.text}
+                    </p>
+                  </div>
+                  <div className="react__container">
+                    <Button
+                      onClick={() => handleUpdate(userThread._id)}
+                      className="edit-thread--btn"
+                      variant="primary"
+                      type="button"
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      onClick={() => handleDelete(userThread._id)}
+                      className="delete-thread--btn"
+                      variant="primary"
+                      type="button"
+                    >
+                      Delete
+                    </Button>
 
-                  {showModal && (
-                    <div className="modal" style={{ display: "block" }}>
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title">Edit Thread</h5>
-                            <Button
-                              type="button"
-                              className="btn-close"
-                              aria-label="Close"
-                              onClick={() => setShowModal(false)}
-                            ></Button>
-                          </div>
-                          <Form
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              onUpdateThread();
-                            }}
-                          >
-                            <Form.Group className="form-thread">
-                              <Form.Control
-                                as="textarea"
-                                placeholder="Enter your update thread"
-                                rows={5}
-                                className="form-control"
-                                name="text"
-                                value={updatedText}
-                                onChange={handleUpdateChange}
-                              />
-                            </Form.Group>
-                            <div className="modal-footer">
-                              <Button
-                                type="submit"
-                                className="update-thread-add-btn"
-                              >
-                                Save
-                              </Button>
+                    {showModal && (
+                      <div className="modal" style={{ display: "block" }}>
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5 className="modal-title">Edit Thread</h5>
                               <Button
                                 type="button"
-                                className="update-thread-cancel-btn"
+                                className="btn-close"
+                                aria-label="Close"
                                 onClick={() => setShowModal(false)}
-                              >
-                                Cancel
-                              </Button>
+                              ></Button>
                             </div>
-                          </Form>
+                            <Form
+                              onSubmit={(e) => {
+                                e.preventDefault();
+                                onUpdateThread();
+                              }}
+                            >
+                              <Form.Group className="form-thread">
+                                <Form.Control
+                                  as="textarea"
+                                  placeholder="Enter your update thread"
+                                  rows={5}
+                                  className="form-control"
+                                  name="text"
+                                  value={updatedText}
+                                  onChange={handleUpdateChange}
+                                />
+                              </Form.Group>
+                              <div className="modal-footer">
+                                <Button
+                                  type="submit"
+                                  className="update-thread-add-btn"
+                                >
+                                  Save
+                                </Button>
+                                <Button
+                                  type="button"
+                                  className="update-thread-cancel-btn"
+                                  onClick={() => setShowModal(false)}
+                                >
+                                  Cancel
+                                </Button>
+                              </div>
+                            </Form>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                  {showDeleteModal && (
-                    <div className="modal" style={{ display: "block" }}>
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title">
-                              Are you sure you want to delete the post!
-                            </h5>
-                            <Button
-                              type="button"
-                              className="btn-close"
-                              aria-label="Close"
-                              onClick={() => setShowDeleteModal(false)}
-                            ></Button>
-                          </div>
-                          <Form
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              onDeleteUserThread(userThread._id);
-                            }}
-                          >
-                            <Form.Group className="form-thread"></Form.Group>
-                            <div className="modal-footer">
-                              <Button
-                                type="submit"
-                                className="update-thread-add-btn"
-                              >
-                                Delete
-                              </Button>
+                    )}
+                    {showDeleteModal && (
+                      <div className="modal" style={{ display: "block" }}>
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5 className="modal-title">
+                                Are you sure you want to delete the post!
+                              </h5>
                               <Button
                                 type="button"
-                                className="update-thread-cancel-btn"
+                                className="btn-close"
+                                aria-label="Close"
                                 onClick={() => setShowDeleteModal(false)}
-                              >
-                                Cancel
-                              </Button>
+                              ></Button>
                             </div>
-                          </Form>
+                            <Form
+                              onSubmit={(e) => {
+                                e.preventDefault();
+                                onDeleteUserThread(userThread._id);
+                              }}
+                            >
+                              <Form.Group className="form-thread"></Form.Group>
+                              <div className="modal-footer">
+                                <Button
+                                  type="submit"
+                                  className="update-thread-add-btn"
+                                >
+                                  Delete
+                                </Button>
+                                <Button
+                                  type="button"
+                                  className="update-thread-cancel-btn"
+                                  onClick={() => setShowDeleteModal(false)}
+                                >
+                                  Cancel
+                                </Button>
+                              </div>
+                            </Form>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const AutoDismissAlert = ({ variant, heading, message }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(false);
-    }, 3000);
+    }, 4000);
 
     return () => {
       clearTimeout(timer);
