@@ -43,7 +43,7 @@
 .comments-container {
   display: flex;
   flex-direction: column-reverse;
-  color: #868e96;
+
 }
 .comment-item {
   display: flex;
@@ -98,7 +98,6 @@
   font-weight: bold;
 }
 
-.like-icon,
 .comment-icon {
   width: 18px;
   height: 18px;
