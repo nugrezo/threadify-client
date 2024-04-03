@@ -73,12 +73,19 @@
 }
 
 .brand {
-  color: #f3d9fa;
+  color: #ffd43b;
   font-size: 32px;
+  font-weight: bold;
+  box-shadow: 6px 6px 6px 6px rgba(0, 0, 0, 0.01);
+  padding: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #be4bdb;
+  border-radius: 8px;
 }
 
 .brand:hover {
-  color: #fff;
+  color: #ffec99;
 }
 
 .signout-icon {

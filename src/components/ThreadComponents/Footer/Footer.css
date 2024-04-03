@@ -14,6 +14,12 @@
   color: #be4bdb;
 }
 
+.footer-copyright p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .footer-copyright a {
   text-decoration: none;
   color: #862e9c;
