@@ -27,7 +27,7 @@ const SignIn = ({ msgAlert, setUser }) => {
 
   const onSignIn = (event) => {
     event.preventDefault();
-    setLoading(false);
+    setLoading(true);
     signIn(formData)
       .then((res) => setUser(res.data.user))
       .then(() =>
