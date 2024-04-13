@@ -66,32 +66,28 @@ export const userAccountInfo = (user, id) => {
   });
 };
 
-export const changeUsername = (user, newUsername) => {
+export const changeUsername = (user, newUsername, id) => {
   return axios({
-    url: apiUrl + "/change-username",
+    url: apiUrl + "/change-username/" + id,
     method: "PATCH",
     headers: {
       Authorization: `Token token=${user.token}`,
     },
     data: {
-      usernameData: {
-        newUsername,
-      },
+      username: newUsername,
     },
   });
 };
 
-export const changeEmail = (user, newEmail) => {
+export const changeEmail = (user, newEmail, id) => {
   return axios({
-    url: apiUrl + "/change-email",
+    url: apiUrl + "/change-email/" + id,
     method: "PATCH",
     headers: {
       Authorization: `Token token=${user.token}`,
     },
     data: {
-      emailData: {
-        newEmail,
-      },
+      email: newEmail,
     },
   });
 };

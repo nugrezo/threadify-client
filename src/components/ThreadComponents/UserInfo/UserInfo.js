@@ -6,7 +6,7 @@ import {
   changeUsername,
   changeEmail,
   changePassword,
-} from "../../../api/auth";
+} from "../../../api/auth"; // Update import statements
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
 
@@ -78,25 +78,20 @@ const UserInfo = ({ msgAlert, user }) => {
         }
       }
 
-      const updatePromises = [
-        changeUsername(user, editableUserInfo.username),
-        changeEmail(user, editableUserInfo.email),
-      ];
+      // Update username and email
+      await changeUsername(user, editableUserInfo.username, user._id);
+      await changeEmail(user, editableUserInfo.email, user._id);
 
-      // Add change password promise if newPassword is provided
+      // Update password if provided
       if (editableUserInfo.newPassword.trim() !== "") {
-        updatePromises.push(
-          changePassword(
-            {
-              oldPassword: editableUserInfo.oldPassword,
-              newPassword: editableUserInfo.newPassword,
-            },
-            user
-          )
+        await changePassword(
+          {
+            oldPassword: editableUserInfo.oldPassword,
+            newPassword: editableUserInfo.newPassword,
+          },
+          user
         );
       }
-
-      await Promise.all(updatePromises);
 
       setUserInfo({
         ...userInfo,
