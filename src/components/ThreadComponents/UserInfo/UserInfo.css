@@ -16,7 +16,6 @@
   background-color: #f1f3f5;
   display: flex;
   margin: 0 auto;
-  margin-top: 3rem;
   padding: 1.2rem;
   align-items: center;
   justify-content: center;
@@ -136,4 +135,17 @@
 .cancel-btn:active {
   --bs-btn-active-bg: #e03131;
   font-weight: bold;
+}
+
+@media (max-width: 414px) {
+  .user-info-container {
+    width: 100%;
+    padding: 1rem;
+  }
+  .user-info-header,
+  .user-info-content {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

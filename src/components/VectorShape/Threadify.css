@@ -49,3 +49,9 @@
 .people {
   animation: slideLeft 2s ease-out forwards;
 }
+
+@media (max-width: 768px) {
+  .threadify-text {
+    font-size: 2em;
+  }
+}

@@ -14,6 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .sign-in--title {
@@ -115,4 +116,16 @@
   color: #7c059a;
   cursor: pointer;
   text-decoration: underline;
+}
+
+@media (max-width: 414px) {
+  .sign-in--form {
+    width: 80%;
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+  .sign-in--btn {
+    padding: 12px;
+  }
 }

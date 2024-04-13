@@ -49,3 +49,10 @@
   --bs-btn-active-bg: #9c36b5;
   font-weight: bold;
 }
+
+@media (max-width: 414px) {
+  .create-thread--form {
+    width: 100%;
+    padding-right: 1rem;
+  }
+}

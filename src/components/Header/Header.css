@@ -100,3 +100,14 @@
   height: 32px;
   stroke: #a61e4d;
 }
+
+@media (max-width: 414px) {
+  .navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .ml-auto {
+    display: flex;
+  }
+}

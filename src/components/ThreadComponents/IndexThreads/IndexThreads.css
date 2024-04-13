@@ -21,6 +21,7 @@
 }
 
 .index-threads--items-all {
+
   border: 1px solid #e9ecef;
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.01);
   color: #343a40;
@@ -228,4 +229,19 @@
   color:#868e96;
   font-size: 12px;
   margin-left: 16px;
+}
+
+@media (max-width: 414px) {
+  .index-threads--items-all {
+  width: 100%;
+
+  }
+  .index-threads--items{
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .ml-auto {
+    display: flex;
+  }
 }
