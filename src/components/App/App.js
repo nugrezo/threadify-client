@@ -16,6 +16,7 @@ import "./App.css";
 import Footer from "../ThreadComponents/Footer/Footer";
 
 import Threadify from "../VectorShape/Threadify";
+import UserInfo from "../ThreadComponents/UserInfo/UserInfo";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -80,6 +81,10 @@ function App() {
             <Route
               path="/userthreads"
               element={<ShowUserThreads msgAlert={msgAlert} user={user} />}
+            />
+            <Route
+              path="/userinfo"
+              element={<UserInfo msgAlert={msgAlert} user={user} />}
             />
           </Routes>
         </HashRouter>

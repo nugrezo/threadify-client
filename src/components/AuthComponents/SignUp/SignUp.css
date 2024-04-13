@@ -86,7 +86,7 @@
 }
 
 .sign-up--btn:active {
-  --bs-btn-active-bg: #e64980;
+  --bs-btn-active-bg: #f06595;
   font-weight: bold;
 }
 

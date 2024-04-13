@@ -24,6 +24,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         (thread) => thread.owner === user._id
       );
       setUserThreads(filteredThreadsBasedOnOwner);
+      console.log(filteredThreadsBasedOnOwner);
       setLoading(false);
 
       msgAlert({

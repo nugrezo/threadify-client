@@ -55,3 +55,43 @@ export const changePassword = (passwords, user) => {
     },
   });
 };
+
+export const userAccountInfo = (user, id) => {
+  return axios({
+    url: apiUrl + "/users/" + id,
+    method: "GET",
+    headers: {
+      Authorization: `Token token=${user.token}`,
+    },
+  });
+};
+
+export const changeUsername = (user, newUsername) => {
+  return axios({
+    url: apiUrl + "/change-username",
+    method: "PATCH",
+    headers: {
+      Authorization: `Token token=${user.token}`,
+    },
+    data: {
+      usernameData: {
+        newUsername,
+      },
+    },
+  });
+};
+
+export const changeEmail = (user, newEmail) => {
+  return axios({
+    url: apiUrl + "/change-email",
+    method: "PATCH",
+    headers: {
+      Authorization: `Token token=${user.token}`,
+    },
+    data: {
+      emailData: {
+        newEmail,
+      },
+    },
+  });
+};

@@ -18,4 +18,9 @@ export default {
   updateThreadSuccess: "Thread is updated successfully.",
   likeThreadSuccess: "You liked the thread!",
   unlikeThreadSuccess: "You unliked the thread!",
+  displayUserInfoSuccess:
+    "My account information is being displayed successfully",
+  displayUserInfoFailure:
+    "My account information could'nt be displayed. Sorry try again!",
+  updateUserInfoSuccess: "Your account information is updated successfully",
 };

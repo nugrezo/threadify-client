@@ -72,6 +72,13 @@
   stroke: #ffdeeb;
 }
 
+.sign-up:active,
+.sign-out:active {
+  background-color: #f06595;
+  stroke: #ffdeeb;
+  font-weight: bold;
+}
+
 .brand {
   color: #ffd43b;
   font-size: 32px;

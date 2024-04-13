@@ -7,9 +7,9 @@ const Threadify = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 40 200 200"
-        className="vector-shape"
+        className="vector-shape connect"
       >
-        <path d="M50,400 Q75,50 100,100 T150,100 Q175,50 200,100 T250,100 Q275,50 300,100 T350,100 Q375,50 400,100 T450,100" />
+        <path d="M50,400 Q75,50 100,100 T150,100 Q175,50 200,-100 T250,100 Q275,50 300,100 T350,100 Q375,50 400,100 T450,100" />
         <text
           x="50%"
           y="50%"
@@ -23,9 +23,8 @@ const Threadify = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 200 200"
-        className="vector-shape"
+        className="vector-shape middle"
       >
-        <path d="M150,100 Q75,50 100,100 T150,100 Q175,50 200,100 T250,100 Q275,50 300,100 T450,100" />
         <text
           x="50%"
           y="50%"
@@ -39,9 +38,8 @@ const Threadify = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 -40 200 200"
-        className="vector-shape"
+        className="vector-shape people"
       >
-        <path d="M50,-200 Q75,50 100,100 T150,100 Q175,50 200,700 T450,100 Q275,50 300,100 T350,100" />
         <text
           x="40%"
           y="50%"

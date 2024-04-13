@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   margin-top: 64px;
-  gap: 12px;
+  gap: 18px;
 }
 
 .icon-btn {
@@ -28,13 +28,22 @@
   background-color: #f783ac;
   stroke: #ffdeeb;
   font-weight: bold;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+.icon-btn:active {
+  background-color: #f06595;
+  stroke: #ffdeeb;
+  font-weight: bold;
 }
 
 .allUserPost-icon,
 .homepage-icon,
-.post-icon {
-  width: 32px;
-  height: 32px;
+.post-icon,
+.user-icon {
+  width: 34px;
+  height: 34px;
   stroke: #a61e4d;
 }
 
