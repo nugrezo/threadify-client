@@ -40,54 +40,57 @@ function App() {
             message={msgAlert.message}
           />
         ))}
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<Threadify to="/" />} />
-            <Route
-              path="/sign-up"
-              element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
-            />
-            <Route
-              path="/sign-in"
-              element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
-            />
-            {user && (
+        <div className="content">
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<Threadify to="/" />} />
               <Route
-                path="/sign-out"
-                element={
-                  <SignOut
-                    msgAlert={msgAlert}
-                    clearUser={clearUser}
-                    user={user}
-                  />
-                }
+                path="/sign-up"
+                element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
               />
-            )}
-            {user && (
               <Route
-                path="/change-password"
-                element={<ChangePassword msgAlert={msgAlert} user={null} />}
+                path="/sign-in"
+                element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
               />
-            )}
-            <Route path="/home" element={<Icon />} />
-            <Route
-              path="/threads"
-              element={<IndexThreads msgAlert={msgAlert} user={user} />}
-            />
-            <Route
-              path="/post"
-              element={<CreateThread msgAlert={msgAlert} user={user} />}
-            />
-            <Route
-              path="/userthreads"
-              element={<ShowUserThreads msgAlert={msgAlert} user={user} />}
-            />
-            <Route
-              path="/userinfo"
-              element={<UserInfo msgAlert={msgAlert} user={user} />}
-            />
-          </Routes>
-        </HashRouter>
+              {user && (
+                <Route
+                  path="/sign-out"
+                  element={
+                    <SignOut
+                      msgAlert={msgAlert}
+                      clearUser={clearUser}
+                      user={user}
+                    />
+                  }
+                />
+              )}
+              {user && (
+                <Route
+                  path="/change-password"
+                  element={<ChangePassword msgAlert={msgAlert} user={null} />}
+                />
+              )}
+              <Route path="/home" element={<Icon />} />
+              <Route
+                path="/threads"
+                element={<IndexThreads msgAlert={msgAlert} user={user} />}
+              />
+              <Route
+                path="/post"
+                element={<CreateThread msgAlert={msgAlert} user={user} />}
+              />
+              <Route
+                path="/userthreads"
+                element={<ShowUserThreads msgAlert={msgAlert} user={user} />}
+              />
+              <Route
+                path="/userinfo"
+                element={<UserInfo msgAlert={msgAlert} user={user} />}
+              />
+            </Routes>
+          </HashRouter>
+        </div>
+
         <Footer />
       </div>
     </Fragment>
