@@ -164,15 +164,21 @@ Leveraging the power of React, the application achieves a responsive and dynamic
 
 Axios is used to make the HTTP client request for the below api end points.
 
-| Verb   | URI Pattern           | #Action           |
-| ------ | --------------------- | ----------------- |
-| POST   | `/threads`            | `thread#crate`    |
-| GET    | `/threads`            | `thread#showall`  |
-| DELETE | `/threads/id/`        | `threads#delete`  |
-| PATCH  | `/threads/id/`        | `threads#update`  |
-| GET    | `/threads/id/`        | `threads#show  `  |
-| POST   | `/threads/id/comment` | `threads#comment` |
-| POST   | `/threads/id/like`    | `threads#like  `  |
+| Verb   | URI Pattern           | #Action                  |
+| ------ | --------------------- | ------------------------ |
+| POST   | `/threads`            | `thread#create`          |
+| GET    | `/threads`            | `thread#showall`         |
+| DELETE | `/threads/id/`        | `threads#delete`         |
+| PATCH  | `/threads/id/`        | `threads#update`         |
+| GET    | `/threads/id/`        | `threads#show  `         |
+| POST   | `/threads/id/comment` | `threads#comment`        |
+| POST   | `/threads/id/like`    | `threads#like  `         |
+| POST   | `/sign-up`            | `auth#sign-up  `         |
+| POST   | `/sign-in`            | `auth#sign-in  `         |
+| PATCH  | `/change-password`    | `auth#change-password  ` |
+| GET    | `/users/id`           | `auths#userinfo  `       |
+| PATCH  | `/change-username/id` | `auth#userinfo  `        |
+| PATCH  | `/change-email/id`    | `auth#userinfo  `        |
 
 3. **CSS**
 
