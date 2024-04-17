@@ -9,6 +9,43 @@ import { signIn, signUp } from "../../../api/auth";
 import messages from "../../AutoDismissAlert/messages";
 import DotsLoader from "../../DotsLoader/DotsLoader";
 
+const validateEmail = (email) => {
+  const emailRegex = /^\S+@\S+\.\S{2,}$/;
+  const isValidFormat = emailRegex.test(email);
+
+  if (isValidFormat) {
+    const validDomains = [
+      "gmail.com",
+      "hotmail.com",
+      "yahoo.com",
+      "outlook.com",
+      "aol.com",
+      "hotmail.co.uk",
+      "hotmail.fr",
+      "msn.com",
+      "yahoo.fr",
+      "wanadoo.fr",
+      "orange.fr",
+      "yahoo.co.uk",
+      "ahoo.com.br",
+      "live.com",
+      "yandex.ru",
+      "googlemail.com",
+      "yahoo.de",
+    ];
+    const domain = email.split("@")[1].toLowerCase();
+
+    return validDomains.includes(domain);
+  } else {
+    return false;
+  }
+};
+
+const validatePassword = (password) => {
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+  return passwordRegex.test(password);
+};
+
 const SignUp = ({ msgAlert, setUser }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,14 +55,25 @@ const SignUp = ({ msgAlert, setUser }) => {
     password: "",
     passwordConfirmation: "",
   });
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    if (name === "email") {
+      setEmailIsValid(validateEmail(value));
+    } else if (name === "password") {
+      setPasswordIsValid(validatePassword(value));
+    }
   };
 
   const onSignUp = async (event) => {
     event.preventDefault();
+    if (!emailIsValid || !passwordIsValid) {
+      return;
+    }
 
     try {
       setLoading(true);
@@ -52,9 +100,14 @@ const SignUp = ({ msgAlert, setUser }) => {
     }
   };
 
+  const passwordConditionStyle = (isValid, password) => ({
+    color:
+      isValid || (password && password.length >= 8) ? "green" : "lightcoral",
+  });
+
   return (
     <div className="row">
-      <div className="sign-up-form col-sm-10 col-md-8 mx-auto mt-5">
+      <div className="sign-up-form col-sm-10 col-md-8 mx-auto">
         <h3 className="sign-up--title">Register your account</h3>
         <Form className="sign-up--form" onSubmit={onSignUp}>
           <Form.Group controlId="email">
@@ -66,7 +119,17 @@ const SignUp = ({ msgAlert, setUser }) => {
               value={formData.email}
               placeholder="Enter your email"
               onChange={handleChange}
+              style={{
+                backgroundColor: emailIsValid
+                  ? "rgb(232, 240, 254)"
+                  : "lightcoral",
+              }}
             />
+            {!emailIsValid && (
+              <Form.Text className="text-danger">
+                Invalid email format
+              </Form.Text>
+            )}
           </Form.Group>
           <Form.Group controlId="username">
             <Form.Label>User Name</Form.Label>
@@ -88,7 +151,55 @@ const SignUp = ({ msgAlert, setUser }) => {
               type="password"
               placeholder="Enter your Password"
               onChange={handleChange}
+              style={{
+                backgroundColor: passwordIsValid
+                  ? "rgb(232, 240, 254)"
+                  : "lightcoral",
+              }}
             />
+            {!passwordIsValid && (
+              <Form.Text className="text-danger">
+                <ul>
+                  <li
+                    style={passwordConditionStyle(
+                      validatePassword(formData.password),
+                      formData.password
+                    )}
+                  >
+                    min 8 characters
+                  </li>
+
+                  <li
+                    style={passwordConditionStyle(
+                      /[A-Z]/.test(formData.password)
+                    )}
+                  >
+                    min 1 uppercase letter
+                  </li>
+                  <li
+                    style={passwordConditionStyle(
+                      /[a-z]/.test(formData.password)
+                    )}
+                  >
+                    min 1 lowercase letter
+                  </li>
+                  <li
+                    style={passwordConditionStyle(
+                      /[0-9]/.test(formData.password)
+                    )}
+                  >
+                    min 1 number
+                  </li>
+                  <li
+                    style={passwordConditionStyle(
+                      /[!@#$%^&*]/.test(formData.password)
+                    )}
+                  >
+                    min 1 special character (!@#$%^&*)
+                  </li>
+                </ul>
+              </Form.Text>
+            )}
           </Form.Group>
           <Form.Group controlId="passwordConfirmation">
             <Form.Label>Password Confirmation</Form.Label>
