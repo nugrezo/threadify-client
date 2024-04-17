@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./AboutApp.css";
 
 const AboutApp = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <h2>About Threadify</h2>
@@ -55,8 +58,14 @@ const AboutApp = () => {
         </ul>
         <p className="join-now">
           Join the Threadify community today and discover a new way to
-          experience social media! <a href="#sign-up">Join Now</a>
+          experience social media!
         </p>
+        <button
+          className="navigate-signUp"
+          onClick={() => navigate("/sign-up")}
+        >
+          Join Now
+        </button>
       </div>
     </div>
   );
