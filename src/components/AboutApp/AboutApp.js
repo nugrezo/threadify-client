@@ -35,7 +35,7 @@ const AboutApp = () => {
             created by other users, fostering engagement and knowledge-sharing.
           </li>
           <li>
-            <strong>Displaying Your Own Thread</strong>Users have a dedicated
+            <strong>Displaying Your Own Thread:</strong>Users have a dedicated
             space to showcase threads they have created, making it easy to
             manage and track their contributions to the platform.
           </li>
