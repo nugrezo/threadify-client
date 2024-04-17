@@ -136,7 +136,11 @@ const UserInfo = ({ msgAlert, user }) => {
   return (
     <div className="user-info-container">
       <Icon />
-      <div className="user-info-header">User Account Information</div>
+      {loading ? (
+        <DotsLoader />
+      ) : (
+        <div className="user-info-header">User Account Information</div>
+      )}
       {loading ? (
         <DotsLoader />
       ) : (
