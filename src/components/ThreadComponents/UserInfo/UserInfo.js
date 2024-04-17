@@ -9,6 +9,7 @@ import {
 } from "../../../api/auth"; // Update import statements
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
+import DotsLoader from "../../DotsLoader/DotsLoader";
 
 const UserInfo = ({ msgAlert, user }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -20,6 +21,7 @@ const UserInfo = ({ msgAlert, user }) => {
     newPassword: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(true);
 
   const onUserInfo = async () => {
     try {
@@ -36,6 +38,7 @@ const UserInfo = ({ msgAlert, user }) => {
         message: messages.displayUserInfoSuccess,
         variant: "success",
       });
+      setLoading(false);
     } catch (error) {
       msgAlert({
         heading: "Failed to fetch user information: " + error.message,
@@ -134,23 +137,27 @@ const UserInfo = ({ msgAlert, user }) => {
     <div className="user-info-container">
       <Icon />
       <div className="user-info-header">User Account Information</div>
-      <div className="user-info-content">
-        <div className="user-info-item">
-          <label className="user-info-label">User Name</label>
-          <span className="user-info-value">{userInfo.username}</span>
+      {loading ? (
+        <DotsLoader />
+      ) : (
+        <div className="user-info-content">
+          <div className="user-info-item">
+            <label className="user-info-label">User Name</label>
+            <span className="user-info-value">{userInfo.username}</span>
+          </div>
+          <div className="user-info-item">
+            <label className="user-info-label">Email</label>
+            <span className="user-info-value">{userInfo.email}</span>
+          </div>
+          <div className="user-info-item">
+            <label className="user-info-label">Password</label>
+            <span className="user-info-value">Hidden</span>
+          </div>
+          <Button className="edit-button" onClick={handleEditUserInfo}>
+            Edit
+          </Button>
         </div>
-        <div className="user-info-item">
-          <label className="user-info-label">Email</label>
-          <span className="user-info-value">{userInfo.email}</span>
-        </div>
-        <div className="user-info-item">
-          <label className="user-info-label">Password</label>
-          <span className="user-info-value">Hidden</span>
-        </div>
-        <Button className="edit-button" onClick={handleEditUserInfo}>
-          Edit
-        </Button>
-      </div>
+      )}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Edit User Information</Modal.Title>
