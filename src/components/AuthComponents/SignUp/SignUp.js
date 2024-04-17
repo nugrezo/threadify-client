@@ -57,6 +57,8 @@ const SignUp = ({ msgAlert, setUser }) => {
   });
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] =
+    useState(true);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -66,6 +68,12 @@ const SignUp = ({ msgAlert, setUser }) => {
       setEmailIsValid(validateEmail(value));
     } else if (name === "password") {
       setPasswordIsValid(validatePassword(value));
+    } else if (name === "passwordConfirmation") {
+      if (value === formData.password) {
+        setPasswordConfirmationIsValid(true);
+      } else {
+        setPasswordConfirmationIsValid(false);
+      }
     }
   };
 
@@ -87,9 +95,11 @@ const SignUp = ({ msgAlert, setUser }) => {
       });
       navigate("/threads");
     } catch (error) {
+      setLoading(false);
       setFormData({
         email: "",
         password: "",
+        username: "",
         passwordConfirmation: "",
       });
       msgAlert({
@@ -140,6 +150,9 @@ const SignUp = ({ msgAlert, setUser }) => {
               value={formData.username}
               placeholder="Enter your User Name"
               onChange={handleChange}
+              style={{
+                backgroundColor: "rgb(232, 240, 254)",
+              }}
             />
           </Form.Group>
           <Form.Group controlId="password">
@@ -210,6 +223,11 @@ const SignUp = ({ msgAlert, setUser }) => {
               type="password"
               placeholder="Confirm Password"
               onChange={handleChange}
+              style={{
+                backgroundColor: passwordConfirmationIsValid
+                  ? "rgb(232, 240, 254)"
+                  : "lightcoral",
+              }}
             />
           </Form.Group>
           <Button className="sign-up--btn" type="submit">

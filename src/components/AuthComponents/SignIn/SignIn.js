@@ -39,6 +39,7 @@ const SignIn = ({ msgAlert, setUser }) => {
       )
       .then(() => navigate("/threads"))
       .catch((error) => {
+        setLoading(false);
         setFormData({
           email: "",
           password: "",
