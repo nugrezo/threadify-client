@@ -55,7 +55,7 @@ const AboutApp = () => {
         </ul>
         <p className="join-now">
           Join the Threadify community today and discover a new way to
-          experience social media! <a href="/#sign-up">Join Now</a>
+          experience social media! <a href="#sign-up">Join Now</a>
         </p>
       </div>
     </div>
