@@ -17,6 +17,7 @@ import Footer from "../ThreadComponents/Footer/Footer";
 
 import Threadify from "../VectorShape/Threadify";
 import UserInfo from "../ThreadComponents/UserInfo/UserInfo";
+import AboutApp from "../AboutApp/AboutApp";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -44,6 +45,7 @@ function App() {
           <HashRouter>
             <Routes>
               <Route path="/" element={<Threadify to="/" />} />
+              <Route path="/about-app" element={<AboutApp />} />
               <Route
                 path="/sign-up"
                 element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

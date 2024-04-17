@@ -44,7 +44,8 @@
 }
 
 .sign-up,
-.sign-out {
+.sign-out,
+.about-app {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,19 +62,22 @@
 }
 
 .sign-up:hover,
-.sign-out:hover {
+.sign-out:hover,
+.about-app:hover {
   background-color: #f783ac;
   color: #ffdeeb;
   font-weight: bold;
 }
 
 .sign-up:hover .login-icon,
-.sign-out:hover .signout-icon {
+.sign-out:hover .signout-icon,
+.about-app:hover .about-icon {
   stroke: #ffdeeb;
 }
 
 .sign-up:active,
-.sign-out:active {
+.sign-out:active,
+.about-app:active {
   background-color: #f06595;
   stroke: #ffdeeb;
   font-weight: bold;
@@ -98,6 +102,12 @@
 .signout-icon {
   width: 32px;
   height: 32px;
+  stroke: #a61e4d;
+}
+
+.about-icon {
+  width: 36px;
+  height: 36px;
   stroke: #a61e4d;
 }
 
