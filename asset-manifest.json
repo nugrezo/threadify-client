@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/threadify-client/static/css/main.45c04517.css",
-    "main.js": "/threadify-client/static/js/main.ab858ea0.js",
+    "main.css": "/threadify-client/static/css/main.48fee1cd.css",
+    "main.js": "/threadify-client/static/js/main.307effcd.js",
     "index.html": "/threadify-client/index.html",
-    "main.45c04517.css.map": "/threadify-client/static/css/main.45c04517.css.map",
-    "main.ab858ea0.js.map": "/threadify-client/static/js/main.ab858ea0.js.map"
+    "main.48fee1cd.css.map": "/threadify-client/static/css/main.48fee1cd.css.map",
+    "main.307effcd.js.map": "/threadify-client/static/js/main.307effcd.js.map"
   },
   "entrypoints": [
-    "static/css/main.45c04517.css",
-    "static/js/main.ab858ea0.js"
+    "static/css/main.48fee1cd.css",
+    "static/js/main.307effcd.js"
   ]
 }
