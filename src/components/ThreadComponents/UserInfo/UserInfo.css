@@ -24,7 +24,9 @@
 .profilephoto-container {
   width: 150px;
   height: 150px;
-  border-radius: 100px;
+  border: 1px solid #343a40;
+  border-radius: 12px;
+  stroke-opacity: 0.5;
 }
 
 .user-info-content {
@@ -76,7 +78,7 @@
   border: none;
   font-weight: bold;
   background-color: #40c057;
-  border-radius: 50px;
+  border-radius: 12px;
   color: #ebfbee;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -90,7 +92,7 @@
   border: none;
   font-weight: bold;
   background-color: #fa5252;
-  border-radius: 50px;
+  border-radius: 12px;
   color: #ffe3e3;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -101,7 +103,15 @@
 }
 .profilephoto-delete:hover {
   background-color: #f03e3e;
-  stroke: #ffc9c9;
+  font-weight: bold;
+}
+
+.profilephoto-upload:active {
+  background-color: #2f9e44;
+  font-weight: bold;
+}
+.profilephoto-delete:active {
+  background-color: #e03131;
   font-weight: bold;
 }
 

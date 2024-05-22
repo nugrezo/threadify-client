@@ -124,14 +124,13 @@ const IndexThreads = ({ msgAlert, user }) => {
                 {thread.comments.map((comment) => (
                   <div key={comment._id} className="separator">
                     <div className="comment-item">
-                      <div className="profilephoto-container">
+                      <div className="profilephoto-container-indexthread">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
-                          className="profilephoto-icon"
                         >
                           <path
                             strokeLinecap="round"

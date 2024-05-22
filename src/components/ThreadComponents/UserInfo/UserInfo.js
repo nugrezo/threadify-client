@@ -22,6 +22,9 @@ const UserInfo = ({ msgAlert, user }) => {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] =
+    useState(true);
 
   const onUserInfo = async () => {
     try {
@@ -62,10 +65,27 @@ const UserInfo = ({ msgAlert, user }) => {
   };
 
   const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setEditableUserInfo({
       ...editableUserInfo,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
+
+    if (name === "newPassword") {
+      setPasswordIsValid(validatePassword(value));
+    } else if (name === "confirmPassword") {
+      if (value === editableUserInfo.newPassword) {
+        setPasswordConfirmationIsValid(true);
+      } else {
+        setPasswordConfirmationIsValid(false);
+      }
+    }
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    return passwordRegex.test(password);
   };
 
   const handleSaveChanges = async () => {
@@ -107,6 +127,14 @@ const UserInfo = ({ msgAlert, user }) => {
         email: editableUserInfo.email,
       });
       setShowModal(false);
+
+      setEditableUserInfo({
+        ...editableUserInfo,
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+
       msgAlert({
         message: messages.updateUserInfoSuccess,
         variant: "success",
@@ -189,7 +217,7 @@ const UserInfo = ({ msgAlert, user }) => {
                     </div>
                     <div className="user-info-item">
                       <label className="user-info-label">Password</label>
-                      <span className="user-info-value">Hidden</span>
+                      <span className="user-info-value">******</span>
                     </div>
                   </div>
                 </div>
@@ -243,7 +271,17 @@ const UserInfo = ({ msgAlert, user }) => {
                 name="newPassword"
                 value={editableUserInfo.newPassword}
                 onChange={handleInputChange}
+                style={{
+                  backgroundColor: passwordIsValid
+                    ? "rgb(232, 240, 254)"
+                    : "lightcoral",
+                }}
               />
+              {!passwordIsValid && (
+                <Form.Text className="text-danger">
+                  {/* Add your password conditions here */}
+                </Form.Text>
+              )}
             </Form.Group>
             <Form.Group controlId="confirmPassword">
               <Form.Label>Confirm Password</Form.Label>
@@ -252,6 +290,11 @@ const UserInfo = ({ msgAlert, user }) => {
                 name="confirmPassword"
                 value={editableUserInfo.confirmPassword}
                 onChange={handleInputChange}
+                style={{
+                  backgroundColor: passwordConfirmationIsValid
+                    ? "rgb(232, 240, 254)"
+                    : "lightcoral",
+                }}
               />
             </Form.Group>
           </Form>
