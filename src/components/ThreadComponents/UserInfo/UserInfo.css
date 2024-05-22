@@ -215,14 +215,16 @@
 }
 
 @media (max-width: 414px) {
-  .user-info-container {
+  .userinfo-container {
     width: 100%;
     padding: 1rem;
+    font-size: 18px;
   }
   .user-info-header,
   .user-info-content {
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 18px;
   }
 }
