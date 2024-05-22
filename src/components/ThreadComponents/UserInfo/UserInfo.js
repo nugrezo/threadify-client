@@ -64,6 +64,12 @@ const UserInfo = ({ msgAlert, user }) => {
     setShowModal(true);
   };
 
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setEditableUserInfo({
@@ -82,11 +88,10 @@ const UserInfo = ({ msgAlert, user }) => {
     }
   };
 
-  const validatePassword = (password) => {
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
-    return passwordRegex.test(password);
-  };
+  const passwordConditionStyle = (isValid, password) => ({
+    color:
+      isValid || (password && password.length >= 8) ? "green" : "lightcoral",
+  });
 
   const handleSaveChanges = async () => {
     try {
@@ -103,6 +108,12 @@ const UserInfo = ({ msgAlert, user }) => {
       if (editableUserInfo.newPassword.trim() !== "") {
         if (editableUserInfo.newPassword !== editableUserInfo.confirmPassword) {
           throw new Error("Passwords do not match");
+        } else if (
+          editableUserInfo.oldPassword === editableUserInfo.newPassword
+        ) {
+          throw new Error(
+            "New Password must be different than your old password!"
+          );
         }
       }
 
@@ -279,7 +290,45 @@ const UserInfo = ({ msgAlert, user }) => {
               />
               {!passwordIsValid && (
                 <Form.Text className="text-danger">
-                  {/* Add your password conditions here */}
+                  <ul>
+                    <li
+                      style={passwordConditionStyle(
+                        validatePassword(editableUserInfo.newPassword),
+                        editableUserInfo.newPassword
+                      )}
+                    >
+                      min 8 characters
+                    </li>
+
+                    <li
+                      style={passwordConditionStyle(
+                        /[A-Z]/.test(editableUserInfo.newPassword)
+                      )}
+                    >
+                      min 1 uppercase letter
+                    </li>
+                    <li
+                      style={passwordConditionStyle(
+                        /[a-z]/.test(editableUserInfo.newPassword)
+                      )}
+                    >
+                      min 1 lowercase letter
+                    </li>
+                    <li
+                      style={passwordConditionStyle(
+                        /[0-9]/.test(editableUserInfo.newPassword)
+                      )}
+                    >
+                      min 1 number
+                    </li>
+                    <li
+                      style={passwordConditionStyle(
+                        /[!@#$%^&*]/.test(editableUserInfo.newPassword)
+                      )}
+                    >
+                      min 1 special character (!@#$%^&*)
+                    </li>
+                  </ul>
                 </Form.Text>
               )}
             </Form.Group>
