@@ -122,6 +122,9 @@
   .sign-in--form {
     width: 100%;
     margin: 0 auto;
+    font-size: 18px;
+    padding: 0.5rem;
+    padding-top: 1rem;
   }
 
   .sign-in--btn {
