@@ -125,23 +125,27 @@
     margin: 0 auto;
   }
 
+  .sign-up--title {
+    margin-bottom: 1rem;
+  }
+
   input {
-    height: 4rem;
+    height: 2.5rem;
   }
 
   .form-label {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .sign-up--btn {
-    padding: 12px;
-    font-size: 20px;
+    padding: 8px;
+    font-size: 18px;
   }
   .have-account {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .navigate-sign-in {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
