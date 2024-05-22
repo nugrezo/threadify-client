@@ -23,6 +23,17 @@
   font-weight: bold;
 }
 
+.userinfo-profilephoto {
+  width: 150px;
+  height: 150px;
+}
+
+.userinfo-profilephoto-container svg {
+  background-color: #f1f3f5;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 .user-info-content {
   border: 1px solid #e9ecef;
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.01);

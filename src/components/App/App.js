@@ -14,7 +14,6 @@ import Icon from "../ThreadComponents/Icon/Icon";
 import ShowUserThreads from "../ThreadComponents/ShowUserThreads/ShowUserThreads";
 import "./App.css";
 import Footer from "../ThreadComponents/Footer/Footer";
-
 import Threadify from "../VectorShape/Threadify";
 import UserInfo from "../ThreadComponents/UserInfo/UserInfo";
 import AboutApp from "../AboutApp/AboutApp";

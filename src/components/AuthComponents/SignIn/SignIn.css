@@ -120,8 +120,7 @@
 
 @media (max-width: 414px) {
   .sign-in--form {
-    width: 80%;
-    padding: 20px;
+    width: 100%;
     margin: 0 auto;
   }
 

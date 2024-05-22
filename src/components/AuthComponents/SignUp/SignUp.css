@@ -116,9 +116,11 @@
 
 @media (max-width: 414px) {
   .sign-up--form {
-    width: 80%;
-    padding: 20px;
+    width: 100%;
+  }
+  .row {
     margin: 0 auto;
+    height: 1800px;
   }
 
   .sign-up--btn {
