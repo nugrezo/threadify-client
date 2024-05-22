@@ -4,14 +4,12 @@
   padding: 0;
 }
 
-.user-info-container {
+.userinfo-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .user-info-header {
-  width: 30%;
+  width: 40%;
   color: #343a40;
   background-color: #f1f3f5;
   display: flex;
@@ -23,15 +21,10 @@
   font-weight: bold;
 }
 
-.userinfo-profilephoto {
+.profilephoto-container {
   width: 150px;
   height: 150px;
-}
-
-.userinfo-profilephoto-container svg {
-  background-color: #f1f3f5;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  border-radius: 100px;
 }
 
 .user-info-content {
@@ -39,7 +32,7 @@
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.01);
   color: #343a40;
   padding: 20px;
-  width: 30%;
+  width: 40%;
   height: auto;
   justify-content: center;
   display: flex;
@@ -49,8 +42,79 @@
   gap: 1rem;
 }
 
+.user-info-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+}
+
+.userinfo-item-container {
+  flex-grow: 2;
+}
+
+.profilephoto-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profilephoto-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.profilephoto-upload {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  background-color: #40c057;
+  border-radius: 50px;
+  color: #ebfbee;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profilephoto-delete {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  background-color: #fa5252;
+  border-radius: 50px;
+  color: #ffe3e3;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profilephoto-upload:hover {
+  background-color: #37b24d;
+  font-weight: bold;
+}
+.profilephoto-delete:hover {
+  background-color: #f03e3e;
+  stroke: #ffc9c9;
+  font-weight: bold;
+}
+
 .user-info-item {
+  width: 100%;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+}
+
+.user-info-item-container {
   display: flex;
   flex-direction: column;
 }
@@ -65,9 +129,11 @@
 }
 
 .edit-button {
+  width: 100%;
   padding: 8px;
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
   align-items: center;
   cursor: pointer;
   border: none;

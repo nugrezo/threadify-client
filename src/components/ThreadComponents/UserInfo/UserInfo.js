@@ -6,7 +6,6 @@ import {
   changeUsername,
   changeEmail,
   changePassword,
-  // uploadProfilePhoto,
 } from "../../../api/auth";
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
@@ -23,7 +22,6 @@ const UserInfo = ({ msgAlert, user }) => {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(true);
-  // const [profilePhoto, setProfilePhoto] = useState();
 
   const onUserInfo = async () => {
     try {
@@ -140,71 +138,69 @@ const UserInfo = ({ msgAlert, user }) => {
     }
   };
 
-  // const handleFileChange = (event) => {
-  //   console.log("event.target files is ", event.target.files);
-  //   const file = event.target.files[0];
-  //   console.log("handle file change file", file);
-  //   if (file) {
-  //     setProfilePhoto(file);
-  //   }
-  // };
-  // const handleUpload = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (!profilePhoto) {
-  //       throw new Error("Please select a photo to upload.");
-  //     }
-  //     const response = await uploadProfilePhoto(user, profilePhoto);
-  //     console.log("Server response data:", response.data); // Log the entire response object
-  //     // If upload successful, refresh user information to fetch the updated photo URL
-  //     await onUserInfo();
-  //     // Extract the URL of the uploaded photo from the response data
-  //     const uploadedPhotoUrl = response.data.url;
-  //     console.log("Uploaded photo URL:", uploadedPhotoUrl); // Log the URL
-  //     // Update the userInfo state with the URL of the uploaded photo
-  //     setUserInfo((prevUserInfo) => ({
-  //       ...prevUserInfo,
-  //       profilePhoto: uploadedPhotoUrl,
-  //     }));
-  //     msgAlert({
-  //       message: "Profile photo uploaded successfully",
-  //       variant: "success",
-  //     });
-  //   } catch (error) {
-  //     msgAlert({
-  //       heading: "Failed to upload profile photo: " + error.message,
-  //       variant: "danger",
-  //     });
-  //   }
-  // };
-
   return (
-    <div className="user-info-container">
+    <div>
       <Icon />
       {loading ? (
         <DotsLoader />
       ) : (
-        <div className="user-info-header">User Account Information</div>
+        <div className="user-info-header">Account Information</div>
       )}
       {loading ? (
         <DotsLoader />
       ) : (
-        <div className="user-info-content">
-          <div className="user-info-item">
-            <label className="user-info-label">User Name</label>
-            <span className="user-info-value">{userInfo.username}</span>
+        <div className="userinfo-container">
+          <div className="user-info-content">
+            <div className="user-info-wrapper">
+              <div className="profilephoto-button-wrapper">
+                <div className="profilephoto-container">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="profilephoto-icon_"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                  </svg>
+                </div>
+                <div className="profilephoto-buttons">
+                  <button className="profilephoto-upload">Upload</button>
+                  <button className="profilephoto-delete">Delete</button>
+                </div>
+              </div>
+              <div className="userinfo-item-container">
+                <div className="user-info-item-container">
+                  <div className="user-info-item-wrapper">
+                    <div className="user-info-item">
+                      <label className="user-info-label">User Name</label>
+                      <span className="user-info-value">
+                        {userInfo.username}
+                      </span>
+                    </div>
+                    <div className="user-info-item">
+                      <label className="user-info-label">Email</label>
+                      <span className="user-info-value">{userInfo.email}</span>
+                    </div>
+                    <div className="user-info-item">
+                      <label className="user-info-label">Password</label>
+                      <span className="user-info-value">Hidden</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="user-info-edit-btn">
+                  <Button className="edit-button" onClick={handleEditUserInfo}>
+                    Edit
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="user-info-item">
-            <label className="user-info-label">Email</label>
-            <span className="user-info-value">{userInfo.email}</span>
-          </div>
-          <div className="user-info-item">
-            <label className="user-info-label">Password</label>
-            <span className="user-info-value">Hidden</span>
-          </div>
-          <Button className="edit-button" onClick={handleEditUserInfo}>
-            Edit
-          </Button>
         </div>
       )}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
