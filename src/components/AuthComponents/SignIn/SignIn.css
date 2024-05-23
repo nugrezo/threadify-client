@@ -18,9 +18,10 @@
 }
 
 .sign-in--title {
-  color: #862e9c;
+  color: #b41cda;
   font-size: 24px;
   margin-bottom: 28px;
+  font-weight: normal;
 }
 
 .sign-in--form {

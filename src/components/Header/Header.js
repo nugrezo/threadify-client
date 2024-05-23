@@ -70,7 +70,12 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <Navbar className="navbar" bg="primary" variant="dark" expand="md">
     <Navbar.Brand className="brand" href="#">
-      Threadify
+      <img
+        src={`${process.env.PUBLIC_URL}/logo.png`}
+        className="App-logo"
+        alt="logo"
+        style={{ width: "100px", height: "auto" }}
+      />
     </Navbar.Brand>
     <div>
       <Nav className="ml-auto">

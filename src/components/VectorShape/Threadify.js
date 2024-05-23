@@ -9,7 +9,6 @@ const Threadify = () => {
         viewBox="0 40 200 200"
         className="vector-shape connect"
       >
-        <path d="M50,400 Q75,50 100,100 T150,100 Q175,50 200,-100 T250,100 Q275,50 300,100 T350,100 Q375,50 400,100 T450,100" />
         <text
           x="50%"
           y="50%"
@@ -19,6 +18,8 @@ const Threadify = () => {
         >
           Connect
         </text>
+        <br />
+        <br />
       </svg>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -30,10 +31,12 @@ const Threadify = () => {
           y="50%"
           dominantBaseline="middle"
           textAnchor="middle"
-          className="threadify-text"
+          className="threadify-text-with"
         >
           with
         </text>
+        <br />
+        <br />
       </svg>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +44,7 @@ const Threadify = () => {
         className="vector-shape people"
       >
         <text
-          x="40%"
+          x="50%"
           y="50%"
           dominantBaseline="middle"
           textAnchor="middle"

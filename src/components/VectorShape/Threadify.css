@@ -1,6 +1,6 @@
 .threadify-container {
   width: 100%;
-  height: 600px;
+  height: 500px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -20,6 +20,14 @@
   font-size: 3em;
   stroke: #ae3ec9;
   stroke-width: 3;
+  fill: #faa2c1;
+  text-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1);
+}
+
+.threadify-text-with {
+  font-size: 2em;
+  stroke: #ae3ec9;
+  stroke-width: 2;
   fill: #faa2c1;
   text-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1);
 }
