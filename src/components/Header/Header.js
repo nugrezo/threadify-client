@@ -74,7 +74,7 @@ const Header = ({ user }) => (
         src={`${process.env.PUBLIC_URL}/logo.png`}
         className="App-logo"
         alt="logo"
-        style={{ width: "100px", height: "auto" }}
+        style={{ width: "120px", height: "auto", margin: "0" }}
       />
     </Navbar.Brand>
     <div>
