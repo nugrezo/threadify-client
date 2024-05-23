@@ -6,7 +6,7 @@
 
 .navbar {
   width: 100%;
-  background: linear-gradient(to right, #862e9c, #ae3ec9);
+  background: linear-gradient(to right, #862e9c, #862e9c);
   display: flex;
   height: auto;
   align-items: center;
