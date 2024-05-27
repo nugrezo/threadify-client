@@ -92,9 +92,7 @@ export const changeEmail = (user, newEmail, id) => {
   });
 };
 
-export const uploadProfilePhoto = (user, file) => {
-  const formData = new FormData();
-  formData.append("profilePhoto", file);
+export const uploadProfilePhoto = (formData, user) => {
   return axios({
     url: apiUrl + "/upload-photo",
     method: "POST",
@@ -106,9 +104,9 @@ export const uploadProfilePhoto = (user, file) => {
   });
 };
 
-export const getPhotoById = (photoId, user) => {
+export const getPhoto = (user) => {
   return axios({
-    url: `${apiUrl}/photos/${photoId}`,
+    url: `${apiUrl}/get-photo`,
     method: "GET",
     headers: {
       Authorization: `Token token=${user.token}`,

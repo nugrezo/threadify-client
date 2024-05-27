@@ -6,6 +6,8 @@ import {
   changeUsername,
   changeEmail,
   changePassword,
+  uploadProfilePhoto,
+  getPhoto,
 } from "../../../api/auth";
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
@@ -25,8 +27,11 @@ const UserInfo = ({ msgAlert, user }) => {
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] =
     useState(true);
+  const [profilePhoto, setProfileFile] = useState();
+  const [allImage, setAllImage] = useState([]);
 
   const onUserInfo = async () => {
+    console.log("onUserInfo called");
     try {
       const response = await userAccountInfo(user, user._id);
       const userAccountDataResponse = response.data.user;
@@ -57,6 +62,11 @@ const UserInfo = ({ msgAlert, user }) => {
   };
 
   useEffect(() => {
+    console.log("useEffect for getImage called");
+    getImage();
+  }, []);
+  useEffect(() => {
+    console.log("useEffect for onUserInfo called");
     onUserInfo();
   }, [user]);
 
@@ -177,6 +187,42 @@ const UserInfo = ({ msgAlert, user }) => {
     }
   };
 
+  const handleFileChange = (event) => {
+    setProfileFile(event.target.files[0]);
+    console.log("File selected:", event.target.files[0]);
+  };
+
+  const handleFileUpload = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("profilePhoto", profilePhoto);
+      const response = await uploadProfilePhoto(formData, user);
+      console.log("response handlefile upload is ", response);
+      getImage();
+      msgAlert({
+        heading: "Photo Uploaded successfully",
+        message: messages.createThreadSucess,
+        variant: "success",
+      });
+    } catch (error) {}
+  };
+
+  const getImage = async () => {
+    console.log("getImage function called");
+    try {
+      const result = await getPhoto(user);
+      const filteredUserPhoto = result.data.data.filter(
+        (photo) => photo.owner === user._id
+      );
+      console.log("resultt is", result);
+      setAllImage(filteredUserPhoto);
+      console.log("allImage array:", result.data.data);
+    } catch (error) {
+      console.error("Failed to get image: ", error);
+    }
+  };
+
   return (
     <div>
       <Icon />
@@ -192,7 +238,18 @@ const UserInfo = ({ msgAlert, user }) => {
           <div className="user-info-content">
             <div className="user-info-wrapper">
               <div className="profilephoto-button-wrapper">
-                <div className="profilephoto-container">
+                <div
+                  className="profilephoto-container"
+                  onClick={() => document.getElementById("fileInput").click()}
+                >
+                  <input
+                    type="file"
+                    name="profilePhoto"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    style={{ display: "none" }}
+                    id="fileInput"
+                  />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -209,9 +266,33 @@ const UserInfo = ({ msgAlert, user }) => {
                   </svg>
                 </div>
                 <div className="profilephoto-buttons">
-                  <button className="profilephoto-upload">Upload</button>
+                  <button
+                    className="profilephoto-upload"
+                    onClick={handleFileUpload}
+                  >
+                    Upload
+                  </button>
                   <button className="profilephoto-delete">Delete</button>
                 </div>
+
+                {allImage && allImage.length > 0 ? (
+                  <>
+                    {console.log(
+                      "Filename:",
+                      allImage[allImage.length - 1].filename
+                    )}
+                    <img
+                      src={require(`../../../images/${
+                        allImage[allImage.length - 1].filename
+                      }`)}
+                      alt={[allImage.length - 1].filename}
+                      height={100}
+                      width={100}
+                    />
+                  </>
+                ) : (
+                  <div>No profile photo uploaded</div>
+                )}
               </div>
               <div className="userinfo-item-container">
                 <div className="user-info-item-container">

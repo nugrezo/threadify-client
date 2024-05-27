@@ -20,6 +20,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   const onShowUserThreads = async () => {
     try {
       const response = await showThread(user, threadId);
+      console.log("show user threads are ", response);
       const filteredThreadsBasedOnOwner = response.data.threads.filter(
         (thread) => thread.owner === user._id
       );

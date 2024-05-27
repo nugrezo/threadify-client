@@ -21,14 +21,6 @@
   font-weight: bold;
 }
 
-.profilephoto-container {
-  width: 150px;
-  height: 150px;
-  border: 1px solid #343a40;
-  border-radius: 12px;
-  stroke-opacity: 0.5;
-}
-
 .user-info-content {
   border: 1px solid #e9ecef;
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.01);
@@ -222,6 +214,36 @@
 .cancel-btn:active {
   --bs-btn-active-bg: #e03131;
   font-weight: bold;
+}
+
+.profilephoto-container {
+  position: relative;
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc; /* Add border to indicate drop area */
+  border-radius: 50%; /* Make it circular */
+  transition: background-color 0.3s, border-color 0.3s;
+  margin: 0 auto;
+}
+
+.profilephoto-container:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Change background color on hover */
+  border-color: #007bff; /* Change border color on hover */
+}
+
+.profilephoto-icon_ {
+  width: 50px;
+  height: 50px;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.profilephoto-container:hover .profilephoto-icon_ {
+  color: #0056b3; /* Change icon color on hover */
 }
 
 @media (max-width: 414px) {
