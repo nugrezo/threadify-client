@@ -1,15 +1,28 @@
 {
   "files": {
-    "main.css": "/threadify-client/static/css/main.9a16e080.css",
-    "main.js": "/threadify-client/static/js/main.7bcd488d.js",
+    "main.css": "/threadify-client/static/css/main.e7629f72.css",
+    "main.js": "/threadify-client/static/js/main.7bcfe47a.js",
     "static/media/new.png": "/threadify-client/static/media/new.aeb3d25b997aed069c49.png",
     "static/media/profilePhoto.JPG": "/threadify-client/static/media/profilePhoto.3e133fd6287063b2d75a.JPG",
+    "static/media/5c1645ca-081e-4028-80da-9b014effa720.JPG": "/threadify-client/static/media/5c1645ca-081e-4028-80da-9b014effa720.1153939c3941f79a364b.JPG",
+    "static/media/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvNDc5LW1rLTk2OTAtam9iNTgzLmpwZw.webp": "/threadify-client/static/media/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvNDc5LW1rLTk2OTAtam9iNTgzLmpwZw.246748d3b492f16afc94.webp",
+    "static/media/pexels-photo-2379005.jpeg": "/threadify-client/static/media/pexels-photo-2379005.b743d43d2ef521720a16.jpeg",
+    "static/media/head-shot-happy-business-man-23386614.webp": "/threadify-client/static/media/head-shot-happy-business-man-23386614.4f6e860d6d9a898f8dfe.webp",
+    "static/media/360_F_245563558_XH9Pe5LJI2kr7VQuzQKAjAbz9PAyejG1.jpg": "/threadify-client/static/media/360_F_245563558_XH9Pe5LJI2kr7VQuzQKAjAbz9PAyejG1.234c9c444bbfe8651122.jpg",
+    "static/media/360_F_258899001_68CalsKTRk6PZQgWH9JhR4heBlncCko9.jpg": "/threadify-client/static/media/360_F_258899001_68CalsKTRk6PZQgWH9JhR4heBlncCko9.50360d9d280b86bec4ea.jpg",
+    "static/media/istockphoto-1410538853-170667a.webp": "/threadify-client/static/media/istockphoto-1410538853-170667a.728d2413e95f5b3e4f52.webp",
+    "static/media/istockphoto-932963678-612x612.jpg": "/threadify-client/static/media/istockphoto-932963678-612x612.3959e9fa6b22a2ebc4a3.jpg",
+    "static/media/headshot-angry-man-frowning-looking-disappointed-bothered-standing-blue-background_1258-65524.avif": "/threadify-client/static/media/headshot-angry-man-frowning-looking-disappointed-bothered-standing-blue-background_1258-65524.da8708a8c21154ca0203.avif",
+    "static/media/image-handsome-smiling-young-african-260nw-722913181.webp": "/threadify-client/static/media/image-handsome-smiling-young-african-260nw-722913181.f3cc566d7affb68043c1.webp",
+    "static/media/handsome-serious-young-man-portrait-260nw-1931449634.webp": "/threadify-client/static/media/handsome-serious-young-man-portrait-260nw-1931449634.e5f56fac7c87cbf6848c.webp",
+    "static/media/emotions-people-concept-headshot-serious-looking-handsome-man-with-beard-looking-confident-determined-white-background_1258-34781.avif": "/threadify-client/static/media/emotions-people-concept-headshot-serious-looking-handsome-man-with-beard-looking-confident-determined-white-background_1258-34781.7f04dcf4d83a85b41af9.avif",
+    "static/media/360_F_225860120_5IAHVdJS5tCwIc3BM4wIzV7faQj7JR2F.webp": "/threadify-client/static/media/360_F_225860120_5IAHVdJS5tCwIc3BM4wIzV7faQj7JR2F.9dc3635d06ca160bb5bf.webp",
     "index.html": "/threadify-client/index.html",
-    "main.9a16e080.css.map": "/threadify-client/static/css/main.9a16e080.css.map",
-    "main.7bcd488d.js.map": "/threadify-client/static/js/main.7bcd488d.js.map"
+    "main.e7629f72.css.map": "/threadify-client/static/css/main.e7629f72.css.map",
+    "main.7bcfe47a.js.map": "/threadify-client/static/js/main.7bcfe47a.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a16e080.css",
-    "static/js/main.7bcd488d.js"
+    "static/css/main.e7629f72.css",
+    "static/js/main.7bcfe47a.js"
   ]
 }
