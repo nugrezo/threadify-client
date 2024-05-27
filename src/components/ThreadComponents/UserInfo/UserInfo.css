@@ -50,7 +50,7 @@
 .profilephoto-button-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.3rem;
 }
 
 .profilephoto-buttons {
@@ -62,7 +62,7 @@
 }
 
 .profilephoto-upload {
-  padding: 8px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,13 +70,13 @@
   border: none;
   font-weight: bold;
   background-color: #40c057;
-  border-radius: 12px;
+  border-radius: 50px;
   color: #ebfbee;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profilephoto-delete {
-  padding: 8px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +84,7 @@
   border: none;
   font-weight: bold;
   background-color: #fa5252;
-  border-radius: 12px;
+  border-radius: 50px;
   color: #ffe3e3;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -228,6 +228,26 @@
   border-radius: 50%; /* Make it circular */
   transition: background-color 0.3s, border-color 0.3s;
   margin: 0 auto;
+  overflow: hidden;
+}
+
+.user-profile-photo {
+  position: relative;
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%; /* Make it circular */
+  transition: background-color 0.3s, border-color 0.3s;
+  margin: 0 auto;
+  transition: transform 0.5s ease;
+}
+
+.profilephoto-container:hover .user-profile-photo {
+  transform: scale(1.2);
 }
 
 .profilephoto-container:hover {
