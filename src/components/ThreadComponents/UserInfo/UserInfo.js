@@ -7,7 +7,8 @@ import {
   changeEmail,
   changePassword,
   uploadProfilePhoto,
-  getPhoto,
+  getProfilePhoto,
+  deleteProfilePhoto,
 } from "../../../api/auth";
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
@@ -62,7 +63,7 @@ const UserInfo = ({ msgAlert, user }) => {
   }, [user]);
 
   useEffect(() => {
-    getImage();
+    getProfileImage();
   }, []);
 
   const handleEditUserInfo = () => {
@@ -212,26 +213,37 @@ const UserInfo = ({ msgAlert, user }) => {
 
     try {
       await uploadProfilePhoto(imageUrl, user);
-      getImage();
+      getProfileImage();
       msgAlert({
         heading: "Photo Uploaded successfully",
-        message: messages.createThreadSucess,
         variant: "success",
       });
     } catch (error) {
       msgAlert({
         heading: "Photo Upload Failed",
-        message: messages.createThreadFailure,
         variant: "danger",
       });
     }
   };
 
-  const getImage = async () => {
+  const getProfileImage = async () => {
     try {
-      const result = await getPhoto(user);
+      const result = await getProfilePhoto(user);
       const photoUrl = result.data.photoUrl;
       setImageUrl(photoUrl);
+    } catch (error) {}
+  };
+
+  const handleDeleteProfilePhoto = async () => {
+    try {
+      const response = await deleteProfilePhoto(user);
+      console.log("delete photo response is ", response);
+      setImageUrl("");
+      document.getElementById("fileInput").value = "";
+      msgAlert({
+        heading: "Photo is deleteded successfully",
+        variant: "success",
+      });
     } catch (error) {}
   };
 
@@ -301,7 +313,12 @@ const UserInfo = ({ msgAlert, user }) => {
                   >
                     Upload
                   </button>
-                  <button className="profilephoto-delete">Delete</button>
+                  <button
+                    className="profilephoto-delete"
+                    onClick={handleDeleteProfilePhoto}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
               <div className="userinfo-item-container">

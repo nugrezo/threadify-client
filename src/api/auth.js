@@ -106,10 +106,20 @@ export const uploadProfilePhoto = (imageUrl, user) => {
 };
 
 // Inside getPhoto function
-export const getPhoto = (user) => {
+export const getProfilePhoto = (user) => {
   return axios({
     url: `${apiUrl}/get-photo`,
     method: "GET",
+    headers: {
+      Authorization: `Token token=${user.token}`,
+    },
+  });
+};
+
+export const deleteProfilePhoto = (user) => {
+  return axios({
+    url: apiUrl + "/delete-photo",
+    method: "DELETE",
     headers: {
       Authorization: `Token token=${user.token}`,
     },
