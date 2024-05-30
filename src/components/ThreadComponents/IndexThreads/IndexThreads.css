@@ -72,11 +72,15 @@
 }
 
 .profilephoto-container-indexthread {
-  width: 50px;
-  height: 50px;
-   border: 1px solid #343a40;
-   border-radius: 12px;
-    stroke-opacity: 0.5;
+  justify-content: flex-start;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border: 2px dashed #ccc; /* Add border to indicate drop area */
+  border-radius: 50%; /* Make it circular */
+  transition: background-color 0.3s, border-color 0.3s;
+  overflow: hidden;
+  stroke-opacity: 0.5;
 }
 
 
