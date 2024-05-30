@@ -192,7 +192,7 @@ const UserInfo = ({ msgAlert, user }) => {
         await uploadBytes(storageRef, image);
         const downloadURL = await getDownloadURL(storageRef);
         setImageUrl(downloadURL);
-        alert("do not forget to click upload button");
+        alert("DO NOT FORGET TO CLICK UPLOAD BUTTON");
       } catch (err) {
       } finally {
         setUploading(false);
@@ -254,7 +254,7 @@ const UserInfo = ({ msgAlert, user }) => {
                   className="profilephoto-container"
                   onClick={() => document.getElementById("fileInput").click()}
                 >
-                  {!uploading ? (
+                  {imageUrl ? (
                     <div>
                       <input
                         type="file"
@@ -295,6 +295,7 @@ const UserInfo = ({ msgAlert, user }) => {
                 </div>
                 <div className="profilephoto-buttons">
                   <button
+                    disabled={uploading}
                     className="profilephoto-upload"
                     onClick={handleFileUpload}
                   >
