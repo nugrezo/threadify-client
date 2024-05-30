@@ -92,18 +92,20 @@ export const changeEmail = (user, newEmail, id) => {
   });
 };
 
-export const uploadProfilePhoto = (formData, user) => {
+// Inside uploadProfilePhoto function
+export const uploadProfilePhoto = (imageUrl, user) => {
   return axios({
     url: apiUrl + "/upload-photo",
     method: "POST",
     headers: {
       Authorization: `Token token=${user.token}`,
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json", // Update content type
     },
-    data: formData,
+    data: { imageUrl },
   });
 };
 
+// Inside getPhoto function
 export const getPhoto = (user) => {
   return axios({
     url: `${apiUrl}/get-photo`,

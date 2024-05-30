@@ -47,8 +47,6 @@ const LikeThread = ({ threadId, user, thread, setThreads, msgAlert }) => {
 
       setIsLiked(userLiked);
     } catch (error) {
-      console.error("Toggle Like Failed:", error);
-
       msgAlert({
         heading: "Toggle Like Failed with error: " + error.message,
         message: "Failed to toggle like on thread.",

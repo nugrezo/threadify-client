@@ -12,6 +12,8 @@ import {
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
 import DotsLoader from "../../DotsLoader/DotsLoader";
+import app from "../../../firebase";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const UserInfo = ({ msgAlert, user }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -27,19 +29,13 @@ const UserInfo = ({ msgAlert, user }) => {
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] =
     useState(true);
-  const [profilePhoto, setProfileFile] = useState();
-  const [allImage, setAllImage] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
 
   const onUserInfo = async () => {
-    console.log("onUserInfo called");
     try {
       const response = await userAccountInfo(user, user._id);
       const userAccountDataResponse = response.data.user;
-      console.log(
-        "user account data response is",
-        JSON.stringify(userAccountDataResponse)
-      );
-
       setUserInfo(userAccountDataResponse);
       setEditableUserInfo({
         username: userAccountDataResponse.username,
@@ -62,13 +58,12 @@ const UserInfo = ({ msgAlert, user }) => {
   };
 
   useEffect(() => {
-    console.log("useEffect for getImage called");
-    getImage();
-  }, []);
-  useEffect(() => {
-    console.log("useEffect for onUserInfo called");
     onUserInfo();
   }, [user]);
+
+  useEffect(() => {
+    getImage();
+  }, []);
 
   const handleEditUserInfo = () => {
     setShowModal(true);
@@ -187,40 +182,57 @@ const UserInfo = ({ msgAlert, user }) => {
     }
   };
 
-  const handleFileChange = (event) => {
-    setProfileFile(event.target.files[0]);
-    console.log("File selected:", event.target.files[0]);
+  const handleFileChange = async (e) => {
+    const image = e.target.files[0];
+    if (image) {
+      try {
+        setUploading(true);
+        const storage = getStorage(app);
+        const storageRef = ref(storage, "images/" + image.name);
+        await uploadBytes(storageRef, image);
+        const downloadURL = await getDownloadURL(storageRef);
+        setImageUrl(downloadURL);
+        alert("do not forget to click upload button");
+      } catch (err) {
+      } finally {
+        setUploading(false);
+      }
+    }
   };
 
-  const handleFileUpload = async (event) => {
-    event.preventDefault();
+  const handleFileUpload = async () => {
+    if (!imageUrl) {
+      msgAlert({
+        heading: "No Image Selected",
+        message: "Please select an image before uploading.",
+        variant: "danger",
+      });
+      return;
+    }
+
     try {
-      const formData = new FormData();
-      formData.append("profilePhoto", profilePhoto);
-      const response = await uploadProfilePhoto(formData, user);
-      console.log("response handlefile upload is ", response);
+      await uploadProfilePhoto(imageUrl, user);
       getImage();
       msgAlert({
         heading: "Photo Uploaded successfully",
         message: messages.createThreadSucess,
         variant: "success",
       });
-    } catch (error) {}
+    } catch (error) {
+      msgAlert({
+        heading: "Photo Upload Failed",
+        message: messages.createThreadFailure,
+        variant: "danger",
+      });
+    }
   };
 
   const getImage = async () => {
-    console.log("getImage function called");
     try {
       const result = await getPhoto(user);
-      const filteredUserPhoto = result.data.data.filter(
-        (photo) => photo.owner === user._id
-      );
-      console.log("resultt is", result);
-      setAllImage(filteredUserPhoto);
-      console.log("allImage array:", result.data.data);
-    } catch (error) {
-      console.error("Failed to get image: ", error);
-    }
+      const photoUrl = result.data.photoUrl;
+      setImageUrl(photoUrl);
+    } catch (error) {}
   };
 
   return (
@@ -242,7 +254,7 @@ const UserInfo = ({ msgAlert, user }) => {
                   className="profilephoto-container"
                   onClick={() => document.getElementById("fileInput").click()}
                 >
-                  {allImage && allImage.length > 0 ? (
+                  {!uploading ? (
                     <div>
                       <input
                         type="file"
@@ -252,13 +264,7 @@ const UserInfo = ({ msgAlert, user }) => {
                         style={{ display: "none" }}
                         id="fileInput"
                       />
-                      <img
-                        src={require(`../../../images/${
-                          allImage[allImage.length - 1].filename
-                        }`)}
-                        alt={[allImage.length - 1].filename}
-                        className="user-profile-photo"
-                      />
+                      <img src={imageUrl} className="user-profile-photo" />
                     </div>
                   ) : (
                     <div>

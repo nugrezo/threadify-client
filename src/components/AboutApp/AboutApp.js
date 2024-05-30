@@ -95,6 +95,7 @@ const AboutApp = () => {
           <p>
             Users can manage their own threads and own threadify account via
             displaying their own threads and own account information.
+            Additionally users can manage their profile photo.
           </p>
         </div>
 

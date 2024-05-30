@@ -17,6 +17,7 @@ import Footer from "../ThreadComponents/Footer/Footer";
 import Threadify from "../VectorShape/Threadify";
 import UserInfo from "../ThreadComponents/UserInfo/UserInfo";
 import AboutApp from "../AboutApp/AboutApp";
+// import ImageUploader from "../ThreadComponents/ImageUploader/ImageUploader";
 
 function App() {
   const [user, setUser] = useState(null);

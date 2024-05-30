@@ -55,24 +55,24 @@ h5 {
 }
 
 .navigate-signUp {
-  background-color: #b41cda;
+  background-color: #fff0f6;
+  border: 1px solid #b41cda;
   padding: 0.5rem;
-  color: aliceblue;
+  color: #b41cda;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 50px;
   text-transform: uppercase;
   font-weight: bold;
-  border: none;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
   font-size: 18px;
 }
 
 .navigate-signUp:hover {
-  background-color: #9c36b5;
+  background-color: #ffdeeb;
 }
 
 .navigate-signUp:active {
-  background-color: #862e9c;
+  background-color: #fcc2d7;
 }
 
 @media (max-width: 414px) {

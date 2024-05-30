@@ -20,16 +20,12 @@ const ShowUserThreads = ({ msgAlert, user }) => {
   const onShowUserThreads = async () => {
     try {
       const response = await showThread(user, threadId);
-      console.log("show user threads are ", response);
       const filteredThreadsBasedOnOwner = response.data.threads.filter(
         (thread) => thread.owner === user._id
       );
       setUserThreads(filteredThreadsBasedOnOwner);
-      console.log(filteredThreadsBasedOnOwner);
       setLoading(false);
-
       msgAlert({
-        // heading: "DISPLAYING MY THREADS",
         message: messages.displayUserThreadsSuccess,
         variant: "success",
       });
@@ -117,7 +113,7 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         showModal || showDeleteModal ? "show" : ""
       }`}
     >
-      <Icon />
+      {user && <Icon />}
       {loading ? (
         <DotsLoader />
       ) : (
