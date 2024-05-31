@@ -130,7 +130,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               placeholder="Enter your email"
               onChange={handleChange}
               style={{
-                backgroundColor: emailIsValid ? "" : "lightcoral",
+                backgroundColor: emailIsValid ? "" : "#ffc9c9",
               }}
             />
             {!emailIsValid && (
@@ -160,7 +160,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               placeholder="Enter your Password"
               onChange={handleChange}
               style={{
-                backgroundColor: passwordIsValid ? "" : "lightcoral",
+                backgroundColor: passwordIsValid ? "" : "#ffc9c9",
               }}
             />
             {!passwordIsValid && (
@@ -217,9 +217,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               placeholder="Confirm Password"
               onChange={handleChange}
               style={{
-                backgroundColor: passwordConfirmationIsValid
-                  ? ""
-                  : "lightcoral",
+                backgroundColor: passwordConfirmationIsValid ? "" : "#ffc9c9",
               }}
             />
           </Form.Group>
