@@ -8,6 +8,7 @@ import "./IndexThreads.css";
 import LikeThread from "../ReactThread/LikeThread/LikeThread";
 
 const IndexThreads = ({ msgAlert, user }) => {
+  console.log("USER is indexthread", user);
   const navigate = useNavigate();
   const [threads, setThreads] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +29,9 @@ const IndexThreads = ({ msgAlert, user }) => {
   const onSetAllIndex = async () => {
     try {
       const response = await getAllThreads(user);
+      console.log("all users in indexthread is ", response);
       setThreads(response.data.threads);
+      console.log("response.data.threads is ", response.data.threads);
     } catch (error) {}
   };
 
@@ -66,6 +69,7 @@ const IndexThreads = ({ msgAlert, user }) => {
                         />
                       </svg>
                     </div>
+
                     <div className="index-threads--items-info">
                       <p className="index-threads--items-info-username">
                         {thread.username}
@@ -75,6 +79,7 @@ const IndexThreads = ({ msgAlert, user }) => {
                       </p>
                       <p className="postDate">
                         Posted on: {formatDate(thread.createdAt)}
+                        <br />
                       </p>
                     </div>
                     <div className="react__container">

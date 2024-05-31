@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
-
 // import AuthenticatedRoute from "../AuthenticatedRoute/AuthenticatedRoute";
 import AutoDismissAlert from "../AutoDismissAlert/AutoDismissAlert";
 import Header from "../Header/Header";
@@ -17,6 +16,7 @@ import Footer from "../ThreadComponents/Footer/Footer";
 import Threadify from "../VectorShape/Threadify";
 import UserInfo from "../ThreadComponents/UserInfo/UserInfo";
 import AboutApp from "../AboutApp/AboutApp";
+
 // import ImageUploader from "../ThreadComponents/ImageUploader/ImageUploader";
 
 function App() {

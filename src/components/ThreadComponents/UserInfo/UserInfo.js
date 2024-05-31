@@ -10,6 +10,7 @@ import {
   getProfilePhoto,
   deleteProfilePhoto,
 } from "../../../api/auth";
+
 import messages from "../../AutoDismissAlert/messages";
 import { Modal, Button, Form } from "react-bootstrap";
 import DotsLoader from "../../DotsLoader/DotsLoader";
@@ -37,6 +38,7 @@ const UserInfo = ({ msgAlert, user }) => {
     try {
       const response = await userAccountInfo(user, user._id);
       const userAccountDataResponse = response.data.user;
+      console.log("user account data is ", userAccountDataResponse);
       setUserInfo(userAccountDataResponse);
       setEditableUserInfo({
         username: userAccountDataResponse.username,

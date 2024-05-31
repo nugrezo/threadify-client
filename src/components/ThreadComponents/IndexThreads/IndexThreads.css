@@ -76,14 +76,29 @@
   align-items: center;
   width: 55px;
   height: 55px;
-  border: 2px dashed #ccc; /* Add border to indicate drop area */
   border-radius: 50%; /* Make it circular */
   transition: background-color 0.3s, border-color 0.3s;
   overflow: hidden;
   stroke-opacity: 0.5;
 }
 
+.user-profile-photo-index{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  overflow: hidden;
+  border-radius: 50%; /* Make it circular */
+  transition: background-color 0.3s, border-color 0.3s;
+  margin: 0 auto;
+  transition: transform 0.5s ease;
+}
 
+.profilephoto-container-indexthread:hover .user-profile-photo-index {
+  transform: scale(1.2);
+}
 
 .create-comment--btn {
   padding: 8px;

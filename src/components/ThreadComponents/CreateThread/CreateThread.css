@@ -43,6 +43,11 @@
 .create-thread--btn:hover {
   background-color: #be4bdb;
   font-weight: bold;
+  color: #fff;
+}
+
+.create-thread--btn:active {
+  color: #fff !important;
 }
 
 .btn-primary {

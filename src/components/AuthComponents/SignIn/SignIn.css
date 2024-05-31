@@ -22,12 +22,14 @@
   font-size: 24px;
   margin-bottom: 28px;
   font-weight: normal;
+  opacity: 0.8;
+  letter-spacing: 1px;
 }
 
 .sign-in--form {
   border: none;
   border-radius: 18px;
-  width: 60%;
+  width: 55%;
   color: #862e9c;
   display: flex;
   flex-direction: column;
@@ -65,40 +67,41 @@
   background-color: #f8f9fa;
 }
 
+.sign-in--form input::placeholder {
+  color: #868e96;
+  font-style: italic;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
 .sign-in--btn {
-  color: #a61e4d;
-  box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.1);
-  background-color: #faa2c1;
-  font-weight: bold;
-  padding: 8px;
-  border-radius: 18px;
-  margin-top: 8px;
-  outline: none;
+  background-color: #fff0f6;
+  border: 1px solid #b41cda;
+  padding: 0.5rem;
+  color: #b41cda;
   cursor: pointer;
-  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  margin-top: 12px;
 }
 
 .sign-in--btn:hover {
-  background-color: #f783ac;
-  font-weight: bold;
+  background-color: #ffdeeb;
+  border: 1px solid #b41cda;
+  color: #b41cda;
 }
 
 .sign-in--btn:active {
-  --bs-btn-active-bg: #f06595;
-  font-weight: bold;
-}
-
-.sign-in--form input::placeholder {
-  color: #868e96;
-}
-
-.btn-primary {
-  --bs-btn-active-bg: none;
+  --bs-btn-active-bg: #fcc2d7;
+  color: #b41cda;
   font-weight: bold;
 }
 
 .btn-primary {
-  --bs-btn-active-bg: #a61e4d;
+  --bs-btn-active-color: none;
   font-weight: bold;
 }
 

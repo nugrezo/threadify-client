@@ -118,7 +118,7 @@ const SignUp = ({ msgAlert, setUser }) => {
   return (
     <div className="row">
       <div className="sign-up-form col-sm-10 col-md-8 mx-auto">
-        <h3 className="sign-up--title">Register your account</h3>
+        <h3 className="sign-up--title">Create an Account</h3>
         <Form className="sign-up--form" onSubmit={onSignUp}>
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
@@ -130,9 +130,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               placeholder="Enter your email"
               onChange={handleChange}
               style={{
-                backgroundColor: emailIsValid
-                  ? "rgb(232, 240, 254)"
-                  : "lightcoral",
+                backgroundColor: emailIsValid ? "" : "lightcoral",
               }}
             />
             {!emailIsValid && (
@@ -150,9 +148,6 @@ const SignUp = ({ msgAlert, setUser }) => {
               value={formData.username}
               placeholder="Enter your User Name"
               onChange={handleChange}
-              style={{
-                backgroundColor: "rgb(232, 240, 254)",
-              }}
             />
           </Form.Group>
           <Form.Group controlId="password">
@@ -165,9 +160,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               placeholder="Enter your Password"
               onChange={handleChange}
               style={{
-                backgroundColor: passwordIsValid
-                  ? "rgb(232, 240, 254)"
-                  : "lightcoral",
+                backgroundColor: passwordIsValid ? "" : "lightcoral",
               }}
             />
             {!passwordIsValid && (
@@ -225,7 +218,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               onChange={handleChange}
               style={{
                 backgroundColor: passwordConfirmationIsValid
-                  ? "rgb(232, 240, 254)"
+                  ? ""
                   : "lightcoral",
               }}
             />
