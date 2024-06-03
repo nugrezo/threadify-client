@@ -6,10 +6,10 @@
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background-color: #f8f9fa;
+  background-color: #c70ac7;
   margin: 0 5px;
   animation: pulse 1.5s infinite ease-in-out;
 }
