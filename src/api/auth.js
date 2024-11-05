@@ -106,12 +106,12 @@ export const uploadProfilePhoto = (imageUrl, user) => {
 };
 
 // Inside getPhoto function
-export const getProfilePhoto = (user) => {
+export const getProfilePhoto = ({ token, userId }) => {
   return axios({
-    url: `${apiUrl}/get-photo`,
+    url: `${apiUrl}/get-photo?userId=${userId}`, // Add userId as a query parameter
     method: "GET",
     headers: {
-      Authorization: `Token token=${user.token}`,
+      Authorization: `Token token=${token}`,
     },
   });
 };

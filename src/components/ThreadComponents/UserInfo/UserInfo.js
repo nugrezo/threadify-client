@@ -230,10 +230,15 @@ const UserInfo = ({ msgAlert, user }) => {
 
   const getProfileImage = async () => {
     try {
-      const result = await getProfilePhoto(user);
+      const result = await getProfilePhoto({
+        userId: user._id,
+        token: user.token,
+      });
       const photoUrl = result.data.photoUrl;
       setImageUrl(photoUrl);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error fetching profile image:", error);
+    }
   };
 
   const handleDeleteProfilePhoto = async () => {

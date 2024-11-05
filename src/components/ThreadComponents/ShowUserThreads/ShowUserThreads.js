@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./ShowUserThreads.css";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
 import { showThread, updateThread, deleteThread } from "../../../api/thread";
+import { getProfilePhoto } from "../../../api/auth";
 import messages from "../../AutoDismissAlert/messages";
 import Icon from "../Icon/Icon";
 import DotsLoader from "../../DotsLoader/DotsLoader";
 
 const ShowUserThreads = ({ msgAlert, user }) => {
   const [userThreads, setUserThreads] = useState([]);
+  const [userPhotos, setUserPhotos] = useState({}); // Store photos by userId
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [threadId, setThreadId] = useState("");
@@ -25,6 +25,20 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       );
       setUserThreads(filteredThreadsBasedOnOwner);
       setLoading(false);
+
+      // Fetch photos for each unique owner
+      const uniqueUserIds = new Set(
+        filteredThreadsBasedOnOwner.map((thread) => thread.owner)
+      );
+      const photos = {};
+      await Promise.all(
+        Array.from(uniqueUserIds).map(async (userId) => {
+          const photoUrl = await fetchUserPhoto(userId);
+          if (photoUrl) photos[userId] = photoUrl;
+        })
+      );
+      setUserPhotos(photos); // Update state with fetched photos
+
       msgAlert({
         message: messages.displayUserThreadsSuccess,
         variant: "success",
@@ -35,6 +49,16 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         message: messages.displayUserThreadsFailure,
         variant: "danger",
       });
+    }
+  };
+
+  const fetchUserPhoto = async (userId) => {
+    try {
+      const response = await getProfilePhoto({ token: user.token, userId });
+      return response.data.photoUrl;
+    } catch (error) {
+      console.error("Error fetching profile photo for user:", userId, error);
+      return null;
     }
   };
 
@@ -67,7 +91,6 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       setShowModal(false);
 
       msgAlert({
-        // heading: "UPDATE THREAD SUCCESS",
         message: messages.updateThreadSuccess,
         variant: "success",
       });
@@ -78,10 +101,6 @@ const ShowUserThreads = ({ msgAlert, user }) => {
         variant: "danger",
       });
     }
-  };
-
-  const handleUpdateChange = (event) => {
-    setUpdatedText(event.target.value);
   };
 
   const onDeleteUserThread = async (threadId) => {
@@ -95,7 +114,6 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       setShowDeleteModal(false);
 
       msgAlert({
-        // heading: "DELETE THREAD SUCCESS",
         message: messages.deleteThreadSuccess,
         variant: "success",
       });
@@ -107,6 +125,11 @@ const ShowUserThreads = ({ msgAlert, user }) => {
       });
     }
   };
+
+  const handleUpdateChange = (event) => {
+    setUpdatedText(event.target.value);
+  };
+
   return (
     <div
       className={`modal-background ${
@@ -124,19 +147,27 @@ const ShowUserThreads = ({ msgAlert, user }) => {
                 <div className="user-threads--items-all" key={userThread._id}>
                   <div className="user-thread--item">
                     <div className="profilephoto-container-showuserthread">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                      {userPhotos[userThread.owner] ? (
+                        <img
+                          src={userPhotos[userThread.owner]}
+                          className="user-profile-photo"
+                          alt="Profile"
                         />
-                      </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                          />
+                        </svg>
+                      )}
                     </div>
                     <div className="user-threads--items-info">
                       <p className="user-threads--items-info-username">

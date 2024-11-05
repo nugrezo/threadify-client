@@ -37,11 +37,17 @@
 }
 
 .profilephoto-container-showuserthread {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #343a40;
-  border-radius: 12px;
-  stroke-opacity: 0.5;
+  position: relative;
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%; /* Make it circular */
+  transition: background-color 0.3s, border-color 0.3s;
+  transition: transform 0.5s ease;
 }
 
 .emptythread-message {

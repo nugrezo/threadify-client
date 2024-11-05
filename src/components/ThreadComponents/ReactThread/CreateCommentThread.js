@@ -15,6 +15,7 @@ const CreateCommentThread = ({
   user,
   msgAlert,
   navigate,
+  onSetAllIndex,
 }) => {
   const handleCommentChange = (event) => {
     const { name, value } = event.target;
@@ -26,25 +27,14 @@ const CreateCommentThread = ({
 
     try {
       await createCommentThread(formData, user, selectedThreadId);
-      setThreads((prevThreads) =>
-        prevThreads.map((thread) =>
-          thread._id === selectedThreadId
-            ? {
-                ...thread,
-                comments: [
-                  ...thread.comments,
-                  { ...formData, username: user.username },
-                ],
-              }
-            : thread
-        )
-      );
+
+      // Refetch all threads to get the latest comments, owner, and updatedAt fields
+      onSetAllIndex();
 
       setFormData({ text: "" });
       setShowModal(false);
 
       msgAlert({
-        // heading: "CREATE COMMENT SUCCESS",
         message: messages.createCommentSucess,
         variant: "success",
       });

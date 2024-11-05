@@ -30,7 +30,11 @@ const Icon = () => {
     <>
       <div className="container">
         <div className="icons-container">
-          <button className="icon-btn" onClick={handleClick}>
+          <button
+            className="icon-btn"
+            data-tooltip="View all posts"
+            onClick={handleClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -46,7 +50,11 @@ const Icon = () => {
               />
             </svg>
           </button>
-          <button className="icon-btn" onClick={handleNavigateThreads}>
+          <button
+            className="icon-btn"
+            data-tooltip="Create Post"
+            onClick={handleNavigateThreads}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -62,7 +70,11 @@ const Icon = () => {
               />
             </svg>
           </button>
-          <button className="icon-btn" onClick={handleNavigateAllPosts}>
+          <button
+            className="icon-btn"
+            data-tooltip="My posts"
+            onClick={handleNavigateAllPosts}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -78,7 +90,11 @@ const Icon = () => {
               />
             </svg>
           </button>
-          <button className="icon-btn" onClick={handleNavigateUserInfo}>
+          <button
+            className="icon-btn"
+            data-tooltip="My account info"
+            onClick={handleNavigateUserInfo}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

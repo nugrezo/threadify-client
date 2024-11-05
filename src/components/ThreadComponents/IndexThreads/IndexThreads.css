@@ -72,14 +72,17 @@
 }
 
 .profilephoto-container-indexthread {
-  justify-content: flex-start;
+  position: relative;
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 55px;
-  height: 55px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
   border-radius: 50%; /* Make it circular */
   transition: background-color 0.3s, border-color 0.3s;
-  overflow: hidden;
-  stroke-opacity: 0.5;
+  transition: transform 0.5s ease;
 }
 
 .user-profile-photo-index{

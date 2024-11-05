@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import Link component
 import "./CreateThread.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -10,6 +11,7 @@ const CreateThread = ({ msgAlert, user }) => {
   const [formData, setFormData] = useState({
     text: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,8 +31,23 @@ const CreateThread = ({ msgAlert, user }) => {
       });
       msgAlert({
         heading: "Created successfully",
-        message: messages.createThreadSucess,
+        message: (
+          <span>
+            Your post has been created.{" "}
+            <span
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+                color: "blue",
+              }}
+              onClick={() => navigate("/threads")}
+            >
+              See your post
+            </span>
+          </span>
+        ),
         variant: "success",
+        autoDismiss: false, // Ensuring autoDismiss is explicitly set to false
       });
     } catch (error) {
       msgAlert({
