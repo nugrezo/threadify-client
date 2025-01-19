@@ -84,7 +84,7 @@ const SignIn = ({ msgAlert, setUser }) => {
           <Button className="sign-in--btn" type="submit">
             {loading ? <DotsLoader /> : "Sign In"}
           </Button>
-          <div className="navigate-sign-in">
+          <div className="navigate-sign-up">
             <p className="have-account">Do not have an account?</p>
             <Nav.Link className="navigate--sign-in" href="#sign-up">
               Sign Up
