@@ -6,10 +6,11 @@
 
 .what-is-threadfy {
   text-align: center;
-  color: #495057;
+  color: #54575a;
 }
 
-.about-app-container p {
+.about-app-container {
+  font-size: 1.2rem;
   text-align: center;
   margin-bottom: 2rem;
   color: #495057;
@@ -24,7 +25,7 @@
   line-height: 2rem;
   padding-right: 3rem;
   color: #495057;
-  width: 40%;
+  width: 30%;
   justify-content: center;
   margin: 0 auto;
   margin-top: 1rem;
@@ -35,26 +36,31 @@ h2 {
   color: #b41cda;
   text-align: center;
   margin-top: 2rem;
-  font-weight: normal;
+  font-weight: bold;
 }
 
-h5 {
+h3 {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 2rem;
   color: #b41cda;
-  font-weight: normal;
+  font-weight: bold;
+}
+
+.features p {
+  margin-bottom: 2rem;
 }
 
 .account-creation {
   display: block;
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   stroke-opacity: 0.8;
 }
-
 .navigate-signUp {
+  position: relative;
+  overflow: hidden;
   background-color: #fff0f6;
   border: 1px solid #b41cda;
   padding: 0.5rem;
@@ -64,15 +70,54 @@ h5 {
   text-transform: uppercase;
   font-weight: bold;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-  font-size: 18px;
+  font-size: 22px;
+  margin-top: 12px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navigate-signUp::before {
+  content: "JOIN NOW";
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  left: -100%; /* Start outside the button */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background: linear-gradient(
+    90deg,
+    #ffdeeb,
+    #b41cda
+  ); /* Gradient wave effect */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+  transform: translateX(0); /* Initial position */
+}
+
+.navigate-signUp:hover::before {
+  transform: translateX(100%); /* Moves gradient wave to the right */
+}
+
+.navigate-signUp::after {
+  content: ""; /* Ensures button text stays above wave */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: transparent;
 }
 
 .navigate-signUp:hover {
   background-color: #ffdeeb;
+  border: 1px solid #b41cda;
+  color: #fff;
 }
 
 .navigate-signUp:active {
-  background-color: #fcc2d7;
+  --bs-btn-active-bg: #fcc2d7;
+  color: #b41cda;
+  font-weight: bold;
 }
 
 @media (max-width: 414px) {

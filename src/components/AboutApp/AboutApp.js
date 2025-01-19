@@ -15,8 +15,8 @@ const AboutApp = () => {
           share your thoughts, and connect with like-minded individuals in a
           refreshing social media experience
         </div>
-        <div>
-          <h5>Features</h5>
+        <div className="features">
+          <h3>Features</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
